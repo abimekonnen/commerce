@@ -85,9 +85,9 @@ class ProductController extends Controller
             'condition'=> 'required',
             'category'=> 'required',
             'type'=> 'required',
-            'picture_one' => 'mimes:jpg,jpeg,png|max:20048',
-            'picture_two' => 'mimes:jpg,jpeg,png|max:5048',
-            'picture_three' => 'mimes:jpg,jpeg,png|max:5048',
+            'picture_one' => 'mimes:jpg,jpeg,png|max:30048',
+            'picture_two' => 'mimes:jpg,jpeg,png|max:30048',
+            'picture_three' => 'mimes:jpg,jpeg,png|max:30048',
           
         ]);
         $request->name = str_replace(' ', '', $request->name);

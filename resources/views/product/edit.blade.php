@@ -145,13 +145,7 @@
 
                         <div class="col-md-7">
                             <img id="picture_one" src="{{url('images/'.$product->image_1)}}" type="file" class="form-control @error('picture_one') is-invalid @enderror" 
-                            name="picture_one" value="" width="800" height="500">
-
-                            @error('picture_one')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            name="picture_one" value="" >
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -159,27 +153,30 @@
 
                         <div class="col-md-7">
                             <img id="picture_two" src="{{url('images/'.$product->image_2)}}" type="file" class="form-control @error('picture_two') is-invalid @enderror"
-                             name="picture_two" value="" width="800" height="500">
+                             name="picture_two" value="" >
 
-                            @error('picture_two')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="picture_three" class="col-md-3 col-form-label text-md-end">Picture three</label>
 
                         <div class="col-md-7">
-                            <img id="picture_three" src="{{url('images/'.$product->image_3)}}" type="file" class="form-control @error('picture_three') is-invalid @enderror" 
-                            name="picture_three" value="" width="800" height="500">
+                            @if ($product->image_3 != null)
+                                <img id="picture_three" src="{{url('images/'.$product->image_3)}}" type="file" class="form-control @error('picture_three') is-invalid @enderror" 
+                                name="picture_three" value=""> 
+                            @else
+                                <div id="image_3" class="col-md-8">
+                                    <input id="picture_three" type="file" class="form-control @error('picture_three') is-invalid @enderror"
+                                    name="picture_three" value=""  >
 
-                            @error('picture_three')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                                    @error('picture_three')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            @endif
+
                         </div>
                     </div>
                     {{ csrf_field() }}
