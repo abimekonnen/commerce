@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" integrity="sha512-5m1IeUDKtuFGvfgz32VVD0Jd/ySGX7xdLxhqemTmThxHdgqlgPdupWoSN8ThtUSLpAGBvA8DY2oO7jJCrGdxoA==" crossorigin="anonymous" referrerpolicy="no-referrer" />   
 @endsection
 @section('script')
+{{-- <script src="{{ url('js/custem.js') }}"></script> --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js" integrity="sha512-2RLMQRNr+D47nbLnsbEqtEmgKy67OSCpWJjJM394czt99xj3jJJJBQ43K7lJpfYAYtvekeyzqfZTx2mqoDh7vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 
@@ -161,7 +164,7 @@
                             </div>
                             <div class="col-md-4">
                                 <img id="picture_one_view"  class="form-control" 
-                                name="picture_one" value="" style="visibility: hidden" >
+                                name="picture_one"  style="visibility: hidden" >
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -186,7 +189,7 @@
                             </div>
                             <div class="col-md-4">
                                 <img id="picture_two_view"  class="form-control" 
-                                name="" value="" style="visibility: hidden" >
+                                name=""  style="visibility: hidden" >
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -210,7 +213,7 @@
                             </div>
                             <div class="col-md-4">
                                 <img id="picture_three_view"  class="form-control" 
-                                name="" value="" style="visibility: hidden">
+                                name=""  style="visibility: hidden">
                             </div>
                         </div>
                         {{ csrf_field() }}
@@ -231,36 +234,7 @@
         </div>
 
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
-        var loadFile = function(event,outputName,imageDivInput,image_cancell_div){
-            var test = image_cancell_div;
-            var output = document.getElementById(outputName);
-            var image= document.getElementById(imageDivInput);
-            var image_cancell_div = document.getElementById(image_cancell_div);
-            output.src =URL.createObjectURL(event.target.files[0]);
-            image.className = "col-md-3"
-            output.style.visibility = 'visible';
-            image_cancell_div.style.visibility = 'visible';
-            output.onload = function() {
-                    output.style.visiblity ='hidden';
-                    URL.revokeObjectURL(output.src) // free memory
-             }
-        };
-
-        function cancellImage(divBtnId,btnId,fileDivId,imageId,fileID){
-            var divBtnId = document.getElementById(divBtnId);
-            var btnId = document.getElementById(btnId);
-            var fileDivId = document.getElementById(fileDivId);
-            var imageId = document.getElementById(imageId);
-            var fileID = document.getElementById(fileID);
-            imageId.style.visibility = 'hidden';
-            divBtnId.style.visibility = 'hidden';
-            fileID.value = "";
-            imageId.src = "";
-            fileDivId.className = "col-md-8"
-        }
 
         $(document).ready(function () {
                 $('#category').on('change', function () {

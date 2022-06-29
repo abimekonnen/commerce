@@ -170,11 +170,13 @@
 </div>
 <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
 <script src="{{ url('js/bootstrap.min.js') }}"></script>
+<script src="{{ url('js/custem.js') }}"></script>
 {{-- <script src="{{ url('js/bootstrap.js"') }}"></script> --}}
 <script src="{{ url('js/jquery.js') }}"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+
 
 <script>
     $(document).ready(function () {

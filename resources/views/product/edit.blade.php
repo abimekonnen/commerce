@@ -26,7 +26,7 @@
                     <div class="row mb-3">
                         <label for="name" class="col-md-3 col-form-label text-md-end">Product Name</label>
 
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $product->name }}" required autocomplete="name" autofocus>
 
                             @error('name')
@@ -54,7 +54,7 @@
                     <div class="row mb-3">
                         <label for="price" class="col-md-3 col-form-label text-md-end">Price</label>
 
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ $product->price }}">
 
                             @error('price')
@@ -68,7 +68,7 @@
                     <div class="row mb-3">
                         <label for="condition" class="col-md-3 col-form-label text-md-end">Condition</label>
 
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <select name="condition" type="submit" class="form-select @error('condition') is-invalid @enderror"  >
                                 <option selected>{{ $product->condition }}</option>
                                 @foreach ($conditions as $condition )
@@ -90,7 +90,7 @@
                     <div class="row mb-3">
                         <label for="category" class="col-md-3 col-form-label text-md-end">Product category</label>
 
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <select name="category"  type="submit" class="form-select  @error('category') is-invalid @enderror" 
                             id="category"
                             >
@@ -113,7 +113,7 @@
                     <div class="row mb-3">
                         <label for="type" class="col-md-3 col-form-label text-md-end">Product type</label>
 
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <select name="type" type="submit" class="form-select @error('type') is-invalid @enderror" 
                             id="type"  >
                             <option  selected value="{{ $product->type }}">{{ $product->type }}</option>
@@ -130,7 +130,7 @@
                     <div class="row mb-3">
                         <label for="description" class="col-md-3 col-form-label text-md-end">Description</label>
 
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <trix-editor input="x" id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $product->description }}">
                             </trix-editor>
                             @error('description')
@@ -142,42 +142,149 @@
                     </div>
                     <div class="row mb-3">
                         <label for="picture_one" class="col-md-3 col-form-label text-md-end">Picture one</label>
+                        @if ($product->image_1 == null)
+                            <div  id="image_1" class="col-md-8">
+                                <input id="picture_one" type="file" class="form-control @error('picture_one') is-invalid @enderror" 
+                                name="picture_one" value="{{url('images/'.$product->image_1)}}" onchange="loadFile(event,'picture_one_view','image_1','cacell_image_div_1')">
 
-                        <div class="col-md-7">
-                            <img id="picture_one" src="{{url('images/'.$product->image_1)}}" type="file" class="form-control @error('picture_one') is-invalid @enderror" 
-                            name="picture_one" value="" >
-                        </div>
+                                @error('picture_one')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_1">
+                                <a class="btn btn-outline-danger" id="imag_btn_1"
+                                onclick="cancellImage('cacell_image_div_1','cancell_imag_btn_1','image_1','picture_one_view','picture_one')"
+                                >
+                                    Cancell
+                            </a>
+                            </div>
+                            <div class="col-md-4">
+                                <img id="picture_one_view"  class="form-control" 
+                                name="picture_one"  style="visibility: hidden" >
+                            </div>
+                        @else
+                            <div  id="image_1" class="col-md-3">
+                                <input id="picture_one" type="file" class="form-control @error('picture_one') is-invalid @enderror" 
+                                name="picture_one" value="{{url('images/'.$product->image_1)}}" onchange="loadFile(event,'picture_one_view','image_1','cacell_image_div_1')">
+
+                                @error('picture_one')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-1" style="visibility: visible" id="cacell_image_div_1">
+                                <a class="btn btn-outline-danger" id="imag_btn_1"
+                                onclick="cancellImage('cacell_image_div_1','cancell_imag_btn_1','image_1','picture_one_view','picture_one')"
+                                >
+                                    Cancell
+                            </a>
+                            </div>
+                            <div class="col-md-4">
+                                <img id="picture_one_view"  class="form-control" src="{{url('images/'.$product->image_1)}}"
+                                name="picture_one"  style="visibility: visible" >
+                            </div>
+                        @endif
                     </div>
                     <div class="row mb-3">
                         <label for="picture_two" class="col-md-3 col-form-label text-md-end">Picture two</label>
+                        @if ($product->image_2 == null)
+                            <div id="image_2" class="col-md-8">
+                                <input id="picture_two" type="file" class="form-control @error('picture_two') is-invalid @enderror" 
+                                name="picture_two" value="{{url('images/'.$product->image_2)}}" onchange="loadFile(event,'picture_two_view','image_2','cacell_image_div_2')">
 
-                        <div class="col-md-7">
-                            <img id="picture_two" src="{{url('images/'.$product->image_2)}}" type="file" class="form-control @error('picture_two') is-invalid @enderror"
-                             name="picture_two" value="" >
+                                @error('picture_two')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div> 
+                            <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_2">
+                                <a class="btn btn-outline-danger" id="imag_btn_2"
+                                onclick="cancellImage('cacell_image_div_2','cancell_imag_btn_2','image_2','picture_two_view','picture_two')"
+                                >
+                                    Cancell
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <img id="picture_two_view"  class="form-control" 
+                                name="" value="" style="visibility: hidden" >
+                            </div>
+                        @else
+                            <div id="image_2" class="col-md-3">
+                                <input id="picture_two" type="file" class="form-control @error('picture_two') is-invalid @enderror" 
+                                name="picture_two" value="{{url('images/'.$product->image_3)}}" onchange="loadFile(event,'picture_two_view','image_2','cacell_image_div_2')">
 
-                        </div>
+                                @error('picture_two')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div> 
+                            <div class="col-md-1" style="visibility: visible" id="cacell_image_div_2">
+                                <a class="btn btn-outline-danger" id="imag_btn_2"
+                                onclick="cancellImage('cacell_image_div_2','cancell_imag_btn_2','image_2','picture_two_view','picture_two')"
+                                >
+                                    Cancell
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <img id="picture_two_view"  class="form-control" src="{{url('images/'.$product->image_2)}}" 
+                                name=""  style="visibility: visible" >
+                            </div>
+
+                        @endif
+
+
                     </div>
                     <div class="row mb-3">
+
                         <label for="picture_three" class="col-md-3 col-form-label text-md-end">Picture three</label>
+                        @if ($product->image_3 == null)
+                            <div id="image_3" class="col-md-8">
+                                <input id="picture_three" type="file" class="form-control @error('picture_three') is-invalid @enderror"
+                                name="picture_three" value="{{url('images/'.$product->image_3)}}" onchange="loadFile(event,'picture_three_view','image_3','cacell_image_div_3')" >
 
-                        <div class="col-md-7">
-                            @if ($product->image_3 != null)
-                                <img id="picture_three" src="{{url('images/'.$product->image_3)}}" type="file" class="form-control @error('picture_three') is-invalid @enderror" 
-                                name="picture_three" value=""> 
-                            @else
-                                <div id="image_3" class="col-md-8">
-                                    <input id="picture_three" type="file" class="form-control @error('picture_three') is-invalid @enderror"
-                                    name="picture_three" value=""  >
+                                @error('picture_three')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_3">
+                                <a class="btn btn-outline-danger" id="cancell_imag_btn_3" 
+                                onclick="cancellImage('cacell_image_div_3','cancell_imag_btn_3','image_3','picture_three_view','picture_three')">
+                                    Cancell
+                                </a >
+                            </div>
+                            <div class="col-md-4">
+                                <img id="picture_three_view" src="" class="form-control" 
+                                name="" value="" style="visibility: hidden">
+                            </div>
+                        @else
+                            <div id="image_3" class="col-md-3">
+                                <input id="picture_three" type="file" class="form-control @error('picture_three') is-invalid @enderror"
+                                name="picture_three" value="{{url('images/'.$product->image_3)}}" onchange="loadFile(event,'picture_three_view','image_3','cacell_image_div_3')" >
 
-                                    @error('picture_three')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            @endif
-
-                        </div>
+                                @error('picture_three')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-1" style="visibility: visible" id="cacell_image_div_3">
+                                <a class="btn btn-outline-danger" id="cancell_imag_btn_3" 
+                                onclick="cancellImage('cacell_image_div_3','cancell_imag_btn_3','image_3','picture_three_view','picture_three')">
+                                    Cancell
+                                </a >
+                            </div>
+                            <div class="col-md-4">
+                                <img id="picture_three_view" src="{{url('images/'.$product->image_3)}}" class="form-control" 
+                                name=""  style="visibility: visible">
+                            </div>
+                        @endif
                     </div>
                     {{ csrf_field() }}
                     <div class="row mb-0">
@@ -199,9 +306,8 @@
         </div>
 
     </div>
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-3.4.1.js"></script> --}}
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
         $(document).ready(function () {
         $('#category').on('change', function () {
