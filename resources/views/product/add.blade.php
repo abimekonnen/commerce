@@ -144,7 +144,7 @@
 
                             <div  id="image_1" class="col-md-8">
                                 <input id="picture_one" type="file" class="form-control @error('picture_one') is-invalid @enderror" 
-                                name="picture_one" value="" onchange="loadFile(event,'picture_one_view','image_1')">
+                                name="picture_one" value="" onchange="loadFile(event,'picture_one_view','image_1','cacell_image_div_1')">
 
                                 @error('picture_one')
                                     <span class="invalid-feedback" role="alert">
@@ -152,10 +152,12 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-1" style="visibility: hidden" id="image_div_1">
-                                <button class="btn btn-outline-danger" id="imag_btn_1">
+                            <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_1">
+                                <a class="btn btn-outline-danger" id="imag_btn_1"
+                                onclick="cancellImage('cacell_image_div_1','cancell_imag_btn_1','image_1','picture_one_view','picture_one')"
+                                >
                                     Cancell
-                                </button >
+                            </a>
                             </div>
                             <div class="col-md-4">
                                 <img id="picture_one_view"  class="form-control" 
@@ -167,7 +169,7 @@
 
                             <div id="image_2" class="col-md-8">
                                 <input id="picture_two" type="file" class="form-control @error('picture_two') is-invalid @enderror" 
-                                name="picture_two" value="" onchange="loadFile(event,'picture_two_view','image_2')">
+                                name="picture_two" value="" onchange="loadFile(event,'picture_two_view','image_2','cacell_image_div_2')">
 
                                 @error('picture_two')
                                     <span class="invalid-feedback" role="alert">
@@ -175,14 +177,16 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-1" style="visibility: hidden" id="image_div_1">
-                                <button class="btn btn-outline-danger" id="imag_btn_1">
+                            <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_2">
+                                <a class="btn btn-outline-danger" id="imag_btn_2"
+                                onclick="cancellImage('cacell_image_div_2','cancell_imag_btn_2','image_2','picture_two_view','picture_two')"
+                                >
                                     Cancell
-                                </button >
+                                </a>
                             </div>
                             <div class="col-md-4">
                                 <img id="picture_two_view"  class="form-control" 
-                                name="picture_two" value="" style="visibility: hidden" >
+                                name="" value="" style="visibility: hidden" >
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -190,7 +194,7 @@
 
                             <div id="image_3" class="col-md-8">
                                 <input id="picture_three" type="file" class="form-control @error('picture_three') is-invalid @enderror"
-                                 name="picture_three" value="" onchange="loadFile(event,'picture_three_view','image_3')" >
+                                 name="picture_three" value="" onchange="loadFile(event,'picture_three_view','image_3','cacell_image_div_3')" >
 
                                 @error('picture_three')
                                     <span class="invalid-feedback" role="alert">
@@ -198,15 +202,15 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-1" style="visibility: hidden" id="image_div_1">
-                                <button class="btn btn-outline-danger" id="cancell_imag_btn_1" 
-                                onclick="cancellImage('image_div_1','cancell_imag_btn_1','image_3','picture_three_view')">
+                            <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_3">
+                                <a class="btn btn-outline-danger" id="cancell_imag_btn_3" 
+                                onclick="cancellImage('cacell_image_div_3','cancell_imag_btn_3','image_3','picture_three_view','picture_three')">
                                     Cancell
-                                </button >
+                                </a >
                             </div>
                             <div class="col-md-4">
                                 <img id="picture_three_view"  class="form-control" 
-                                name="picture_three" value="" style="visibility: hidden">
+                                name="" value="" style="visibility: hidden">
                             </div>
                         </div>
                         {{ csrf_field() }}
@@ -230,23 +234,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
-        var loadFile = function(event,outputName,imageDivInput){
+        var loadFile = function(event,outputName,imageDivInput,image_cancell_div){
+            var test = image_cancell_div;
             var output = document.getElementById(outputName);
             var image= document.getElementById(imageDivInput);
+            var image_cancell_div = document.getElementById(image_cancell_div);
             output.src =URL.createObjectURL(event.target.files[0]);
             image.className = "col-md-3"
             output.style.visibility = 'visible';
+            image_cancell_div.style.visibility = 'visible';
             output.onload = function() {
                     output.style.visiblity ='hidden';
                     URL.revokeObjectURL(output.src) // free memory
              }
         };
 
-        function cancellImage(divBtnId,btnId,fileDivId,imageId){
+        function cancellImage(divBtnId,btnId,fileDivId,imageId,fileID){
             var divBtnId = document.getElementById(divBtnId);
             var btnId = document.getElementById(btnId);
             var fileDivId = document.getElementById(fileDivId);
             var imageId = document.getElementById(imageId);
+            var fileID = document.getElementById(fileID);
+            imageId.style.visibility = 'hidden';
+            divBtnId.style.visibility = 'hidden';
+            fileID.value = "";
+            imageId.src = "";
+            fileDivId.className = "col-md-8"
         }
 
         $(document).ready(function () {
@@ -259,7 +272,7 @@
                 url: 'http://127.0.0.1:8000/fetchData/' + categoryName,
                 success: function (response) {
                 var response = JSON.parse(response);
-                console.log(response);   
+                //console.log(response);   
                 $('#type').empty();
                 $('#type').append(`<option value="0" disabled selected>Select type</option>`);
                 response.forEach(element => {
