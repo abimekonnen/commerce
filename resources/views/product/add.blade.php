@@ -26,7 +26,7 @@
                         <div class="row mb-3">
                             <label for="name" class="col-md-3 col-form-label text-md-end">Product Name</label>
 
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
@@ -42,7 +42,7 @@
                         <div class="row mb-3">
                             <label for="model" class="col-md-3 col-form-label text-md-end">Model</label>
 
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <input id="model" type="text" class="form-control @error('model') is-invalid @enderror" name="model" value="{{ old('model') }}">
 
                                 @error('model')
@@ -58,7 +58,7 @@
                         <div class="row mb-3">
                             <label for="price" class="col-md-3 col-form-label text-md-end">Price</label>
 
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}">
 
                                 @error('price')
@@ -72,7 +72,7 @@
                         <div class="row mb-3">
                             <label for="condition" class="col-md-3 col-form-label text-md-end">Condition</label>
 
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <select name="condition" type="submit" class="form-select @error('condition') is-invalid @enderror"  >
                                     <option disabled selected>Select condition</option>
                                     @foreach ($conditions as $condition )
@@ -91,7 +91,7 @@
                         <div class="row mb-3">
                             <label for="category" class="col-md-3 col-form-label text-md-end">Product category</label>
 
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <select name="category"  type="submit" class="form-select  @error('category') is-invalid @enderror" 
                                 id="category"
                                 >
@@ -112,7 +112,7 @@
                         <div class="row mb-3">
                             <label for="type" class="col-md-3 col-form-label text-md-end">Product type</label>
 
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <select name="type" type="submit" class="form-select @error('type') is-invalid @enderror" 
                                 id="type"  >
                                     <option disabled selected>Select Type</option>
@@ -129,7 +129,7 @@
                         <div class="row mb-3">
                             <label for="description" class="col-md-3 col-form-label text-md-end">Description</label>
 
-                            <div class="col-md-7">
+                            <div class="col-md-8">
                                 <trix-editor input="x" id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}">
                                 </trix-editor>
                                 @error('description')
@@ -142,9 +142,9 @@
                         <div class="row mb-3">
                             <label for="picture_one" class="col-md-3 col-form-label text-md-end">Picture one</label>
 
-                            <div class="col-md-3">
+                            <div  id="image_1" class="col-md-8">
                                 <input id="picture_one" type="file" class="form-control @error('picture_one') is-invalid @enderror" 
-                                name="picture_one" value="" onchange="loadFile(event)">
+                                name="picture_one" value="" onchange="loadFile(event,'picture_one_view','image_1')">
 
                                 @error('picture_one')
                                     <span class="invalid-feedback" role="alert">
@@ -152,16 +152,22 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="col-md-1" style="visibility: hidden" id="image_div_1">
+                                <button class="btn btn-outline-danger" id="imag_btn_1">
+                                    Cancell
+                                </button >
+                            </div>
                             <div class="col-md-4">
                                 <img id="picture_one_view"  class="form-control" 
-                                name="picture_one" value="" >
+                                name="picture_one" value="" style="visibility: hidden" >
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label for="picture_two" class="col-md-3 col-form-label text-md-end">Picture two</label>
 
-                            <div class="col-md-7">
-                                <input id="picture_two" type="file" class="form-control @error('picture_two') is-invalid @enderror" name="picture_two" value="">
+                            <div id="image_2" class="col-md-8">
+                                <input id="picture_two" type="file" class="form-control @error('picture_two') is-invalid @enderror" 
+                                name="picture_two" value="" onchange="loadFile(event,'picture_two_view','image_2')">
 
                                 @error('picture_two')
                                     <span class="invalid-feedback" role="alert">
@@ -169,18 +175,38 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="col-md-1" style="visibility: hidden" id="image_div_1">
+                                <button class="btn btn-outline-danger" id="imag_btn_1">
+                                    Cancell
+                                </button >
+                            </div>
+                            <div class="col-md-4">
+                                <img id="picture_two_view"  class="form-control" 
+                                name="picture_two" value="" style="visibility: hidden" >
+                            </div>
                         </div>
                         <div class="row mb-3">
                             <label for="picture_three" class="col-md-3 col-form-label text-md-end">Picture three</label>
 
-                            <div class="col-md-7">
-                                <input id="picture_three" type="file" class="form-control @error('picture_three') is-invalid @enderror" name="picture_three" value="">
+                            <div id="image_3" class="col-md-8">
+                                <input id="picture_three" type="file" class="form-control @error('picture_three') is-invalid @enderror"
+                                 name="picture_three" value="" onchange="loadFile(event,'picture_three_view','image_3')" >
 
                                 @error('picture_three')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                            <div class="col-md-1" style="visibility: hidden" id="image_div_1">
+                                <button class="btn btn-outline-danger" id="cancell_imag_btn_1" 
+                                onclick="cancellImage('image_div_1','cancell_imag_btn_1','image_3','picture_three_view')">
+                                    Cancell
+                                </button >
+                            </div>
+                            <div class="col-md-4">
+                                <img id="picture_three_view"  class="form-control" 
+                                name="picture_three" value="" style="visibility: hidden">
                             </div>
                         </div>
                         {{ csrf_field() }}
@@ -204,16 +230,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
-        var loadFile = function(event){
-            var outputOne = document.getElementById('picture_one_view');
-            outputOne.src =URL.createObjectURL(event.target.files[0]);
-            outputOne.onload = function() {
-                    URL.revokeObjectURL(outputOne.src) // free memory
+        var loadFile = function(event,outputName,imageDivInput){
+            var output = document.getElementById(outputName);
+            var image= document.getElementById(imageDivInput);
+            output.src =URL.createObjectURL(event.target.files[0]);
+            image.className = "col-md-3"
+            output.style.visibility = 'visible';
+            output.onload = function() {
+                    output.style.visiblity ='hidden';
+                    URL.revokeObjectURL(output.src) // free memory
              }
         };
 
-    </script>
-    <script>
+        function cancellImage(divBtnId,btnId,fileDivId,imageId){
+            var divBtnId = document.getElementById(divBtnId);
+            var btnId = document.getElementById(btnId);
+            var fileDivId = document.getElementById(fileDivId);
+            var imageId = document.getElementById(imageId);
+        }
+
         $(document).ready(function () {
                 $('#category').on('change', function () {
                 let categoryName = $(this).val();
