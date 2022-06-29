@@ -7,6 +7,7 @@ use App\Models\Condition;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductTyp;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use File;
 use Image;
@@ -85,9 +86,9 @@ class ProductController extends Controller
             'condition'=> 'required',
             'category'=> 'required',
             'type'=> 'required',
-            'picture_one' => 'mimes:jpg,jpeg,png|max:30048',
-            'picture_two' => 'mimes:jpg,jpeg,png|max:30048',
-            'picture_three' => 'mimes:jpg,jpeg,png|max:30048',
+            'picture_one' => 'mimes:jpg,jpeg,png|max:81048',
+            'picture_two' => 'mimes:jpg,jpeg,png|max:81048',
+            'picture_three' => 'mimes:jpg,jpeg,png|max:81048',
           
         ]);
         $request->name = str_replace(' ', '', $request->name);
@@ -197,11 +198,51 @@ class ProductController extends Controller
             'condition'=> 'required',
             'category'=> 'required',
             'type'=> 'required',
-            // 'picture_one' => 'mimes:jpg,jpeg,png|max:5048',
-            // 'picture_two' => 'mimes:jpg,jpeg,png|max:5048',
-            // 'picture_three' => 'mimes:jpg,jpeg,png|max:5048',
+            'picture_one' => 'mimes:jpg,jpeg,png|max:81048',
+            'picture_two' => 'mimes:jpg,jpeg,png|max:81048',
+            'picture_three' => 'mimes:jpg,jpeg,png|max:81048',
           
         ]);
+        $nameImg = str_replace(' ', '', $request->name);
+        //dd($id);
+        if($request->picture_one){
+            $image = $request->picture_one;
+            $newPictureOneName = '\1'.'-'.time().'-'. $nameImg.'.'.$image->extension();
+            $destination1 = public_path('images').$newPictureOneName;
+            $img = Image::make($image->getRealPath());
+            $img->resize(500, 500, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destination1);
+
+            DB::table('products')
+            ->where('id', $id)
+            ->update(['image_1' => $newPictureOneName]);
+
+        }
+        if($request->picture_two){
+            $image = $request->picture_two;
+            $newPictureTwoName = '\2'.'-'.time().'-'.  $nameImg.'.'.$image->extension();
+            $destination2 = public_path('images').$newPictureTwoName;
+            $img = Image::make($image->getRealPath());
+            $img->resize(500, 500, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destination2);
+            DB::table('products')
+            ->where('id', $id)
+            ->update(['image_2' => $newPictureTwoName]);
+        }
+        if($request->picture_three){
+            $image = $request->picture_three;
+            $newPictureThreeName = '\3'.'-'.time().'-'. $nameImg.'.'.$image->extension();
+            $destination3 = public_path('images').$newPictureThreeName;
+            $img = Image::make($image->getRealPath());
+            $img->resize(500, 500, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destination3);
+            DB::table('products')
+            ->where('id', $id)
+            ->update(['image_3' => $newPictureThreeName]);
+        }
         $products = Product::where('id',$id)->update(
             [
             'name' => $request->name,
@@ -211,9 +252,6 @@ class ProductController extends Controller
             'category'=> $request->category,
             'type'=> $request->type,
             'description'=> $request->description,
-            // 'picture_one'=> $request->picture_one,
-            // 'picture_two'=> $request->picture_two,
-            // 'picture_three'=> $request->picture_three,
             ]
         );
 

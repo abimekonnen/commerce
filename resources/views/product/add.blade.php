@@ -142,12 +142,12 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mb-3 sb-1">
                             <label for="picture_one" class="col-md-3 col-form-label text-md-end">Picture one</label>
 
                             <div  id="image_1" class="col-md-8">
                                 <input id="picture_one" type="file" class="form-control @error('picture_one') is-invalid @enderror" 
-                                name="picture_one" value="" onchange="loadFile(event,'picture_one_view','image_1','cacell_image_div_1')">
+                                name="picture_one" value="" onchange="loadFile2(event,'picture_one_view','image_1','cacell_image_div_1')">
 
                                 @error('picture_one')
                                     <span class="invalid-feedback" role="alert">
@@ -157,22 +157,24 @@
                             </div>
                             <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_1">
                                 <a class="btn btn-outline-danger" id="imag_btn_1"
-                                onclick="cancellImage('cacell_image_div_1','cancell_imag_btn_1','image_1','picture_one_view','picture_one')"
+                                onclick="cancellImage2('cacell_image_div_1','cancell_imag_btn_1','image_1','picture_one_view','picture_one')"
                                 >
                                     Cancell
                             </a>
-                            </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="row mt-3" id="imageSetion_1">
+                            <label for="picture_two" class="col-md-3 col-form-label text-md-end"></label>
+                            <div class="col-md-8">
                                 <img id="picture_one_view"  class="form-control" 
                                 name="picture_one"  style="visibility: hidden" >
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mt-3 ">
                             <label for="picture_two" class="col-md-3 col-form-label text-md-end">Picture two</label>
 
                             <div id="image_2" class="col-md-8">
                                 <input id="picture_two" type="file" class="form-control @error('picture_two') is-invalid @enderror" 
-                                name="picture_two" value="" onchange="loadFile(event,'picture_two_view','image_2','cacell_image_div_2')">
+                                name="picture_two" value="" onchange="loadFile2(event,'picture_two_view','image_2','cacell_image_div_2')">
 
                                 @error('picture_two')
                                     <span class="invalid-feedback" role="alert">
@@ -182,22 +184,26 @@
                             </div>
                             <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_2">
                                 <a class="btn btn-outline-danger" id="imag_btn_2"
-                                onclick="cancellImage('cacell_image_div_2','cancell_imag_btn_2','image_2','picture_two_view','picture_two')"
+                                onclick="cancellImage2('cacell_image_div_2','cancell_imag_btn_2','image_2','picture_two_view','picture_two')"
                                 >
                                     Cancell
                                 </a>
                             </div>
-                            <div class="col-md-4">
+
+                        </div>
+                        <div class="row mt-3" id="imageSetion_2">
+                            <label for="picture_two" class="col-md-3 col-form-label text-md-end"></label>
+                            <div class="col-md-8"  >
                                 <img id="picture_two_view"  class="form-control" 
                                 name=""  style="visibility: hidden" >
                             </div>
                         </div>
-                        <div class="row mb-3">
+                        <div class="row mt-3 ">
                             <label for="picture_three" class="col-md-3 col-form-label text-md-end">Picture three</label>
 
                             <div id="image_3" class="col-md-8">
                                 <input id="picture_three" type="file" class="form-control @error('picture_three') is-invalid @enderror"
-                                 name="picture_three" value="" onchange="loadFile(event,'picture_three_view','image_3','cacell_image_div_3')" >
+                                 name="picture_three" value="" onchange="loadFile2(event,'picture_three_view','image_3','cacell_image_div_3')" >
 
                                 @error('picture_three')
                                     <span class="invalid-feedback" role="alert">
@@ -205,19 +211,22 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_3">
+                            <div class="col-md-1 col-sm-1" style="visibility: hidden" id="cacell_image_div_3">
                                 <a class="btn btn-outline-danger" id="cancell_imag_btn_3" 
-                                onclick="cancellImage('cacell_image_div_3','cancell_imag_btn_3','image_3','picture_three_view','picture_three')">
+                                onclick="cancellImage2('cacell_image_div_3','cancell_imag_btn_3','image_3','picture_three_view','picture_three')">
                                     Cancell
                                 </a >
                             </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="row mt-3" id="imageSetion_3">
+                            <label for="picture_three" class="col-md-3 col-form-label text-md-end"></label>
+                            <div class="col-md-8">
                                 <img id="picture_three_view"  class="form-control" 
                                 name=""  style="visibility: hidden">
                             </div>
                         </div>
                         {{ csrf_field() }}
-                        <div class="row mb-0">
+                        <div class="row mt-3">
                             <div class="col-md-4 offset-md-5">
 
 
