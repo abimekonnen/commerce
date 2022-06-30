@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2022 at 12:19 PM
+-- Generation Time: Jun 30, 2022 at 10:44 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -43,6 +43,25 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (6, 'Electronics', '2022-06-06 03:52:14', '2022-06-06 03:52:14'),
 (8, 'Shoes', '2022-06-06 04:50:09', '2022-06-06 04:50:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cities`
+--
+
+CREATE TABLE `cities` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cities`
+--
+
+INSERT INTO `cities` (`id`, `name`) VALUES
+(1, 'Adiss Abeba'),
+(2, 'Adama');
 
 -- --------------------------------------------------------
 
@@ -118,7 +137,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2022_06_13_070804_conditions_table', 13),
 (21, '2022_06_13_100536_products_table', 14),
 (22, '2022_06_13_101635_products_table', 15),
-(23, '2022_06_14_072044_products_table', 16);
+(23, '2022_06_14_072044_products_table', 16),
+(24, '2022_06_30_055212_create_city_table', 17),
+(25, '2022_06_30_055924_create_cities_table', 18),
+(26, '2022_06_30_060828_adding_city_colomun_for_user', 19);
 
 -- --------------------------------------------------------
 
@@ -211,7 +233,13 @@ INSERT INTO `products` (`id`, `name`, `model`, `price`, `condition`, `category`,
 (8, 'hp 12', 'hp 840 12', 15000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1655813979-hp 12.jpg', '2-1655813979-hp 12.jpg', '3-1655813979-hp 12.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:19:39', '2022-06-21 09:19:39'),
 (9, 'tablet 1', 'tab 1', 20000.00, 'New', 'Electronics', 'Tablet', NULL, NULL, '1-1655814018-tablet 1.jpg', '2-1655814018-tablet 1.jpg', '3-1655814018-tablet 1.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:20:18', '2022-06-21 09:20:18'),
 (10, 'Tablet 3', 'tab 2', 10000.00, 'Used', 'Electronics', 'Tablet', NULL, NULL, '1-1655814054-Tablet 3.jpg', '2-1655814054-Tablet 3.jpg', '3-1655814054-Tablet 3.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:20:54', '2022-06-21 09:20:54'),
-(11, 'hp 13', 'hp 840 13', 20000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1655814092-hp 13.jpg', '2-1655814092-hp 13.jpg', '3-1655814092-hp 13.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:21:32', '2022-06-21 09:21:32');
+(11, 'hp 13', 'hp 840 13', 20000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1655814092-hp 13.jpg', '2-1655814092-hp 13.jpg', '3-1655814092-hp 13.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:21:32', '2022-06-21 09:21:32'),
+(15, 'dell 2', 'dell latituse', 25000.00, 'New', 'Electronics', 'Laptop', NULL, NULL, '\\1-1656412487-dell2.jpg', '\\2-1656412488-dell2.jpg', '\\3-1656412488-dell2.jpg', 'active', NULL, NULL, 13, '2022-06-28 07:34:49', '2022-06-28 07:34:49'),
+(16, 'dell 3', 'dell latituse', 25000.00, 'Used', 'Electronics', 'Tablet', NULL, NULL, '\\1-1656412549-dell3.jpg', '\\2-1656412549-dell3.jpg', '\\3-1656412549-dell3.jpg', 'active', NULL, NULL, 13, '2022-06-28 07:35:49', '2022-06-28 07:35:49'),
+(18, 'dell 2', 'dell latituse 2', 15000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '\\1-1656488889-dell2.jpg', '\\2-1656488891-dell2.jpg', NULL, 'active', NULL, NULL, 15, '2022-06-29 04:48:11', '2022-06-29 05:25:58'),
+(19, 'dell 2', 'dell latituse', 15000.00, 'New', 'Electronics', 'Tablet', NULL, NULL, '\\1-1656499223-dell2.jpg', '\\2-1656567989-dell2.jpg', NULL, 'active', NULL, NULL, 15, '2022-06-29 07:40:25', '2022-06-30 02:46:30'),
+(20, 'dell 2', 'dell latituse', 15000.00, 'New', 'Electronics', 'Tablet', NULL, NULL, '\\1-1656499274-dell2.jpg', '\\2-1656499276-dell2.jpg', '\\3-1656499278-dell2.jpg', 'active', NULL, NULL, 15, '2022-06-29 07:41:18', '2022-06-29 07:41:18'),
+(21, 'dell2', 'dell latituse', 25000.00, 'New', 'Electronics', 'Tablet', NULL, NULL, '\\1-1656504299-dell2.jpg', '\\2-1656506031-dell2.jpg', '\\3-1656506031-dell2.jpg', 'active', NULL, NULL, 15, '2022-06-29 08:05:22', '2022-06-29 09:39:54');
 
 -- --------------------------------------------------------
 
@@ -255,16 +283,17 @@ CREATE TABLE `users` (
   `phone_1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `role` enum('user','admin') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `google_id`, `phone_1`, `phone_2`, `role`, `address`) VALUES
-(13, 'Abi', 'yourweb200@gmail.com', '2022-06-04 05:01:26', '$2y$10$rQ.BWW1rN5Hsu13oXzoCU.PA9.RwThTAqYk191d9XCMyBvrvBjp8u', NULL, '2022-06-04 05:00:06', '2022-06-04 05:28:58', NULL, '1234567890', NULL, 'admin', 'Lideta'),
-(15, 'yared', 'mekonnenabi@gmail.com', '2022-06-21 09:42:34', '$2y$10$wwlgwQ0CuN24QB5.dz5LN.nQH5Udwn9e5S/xbiu91f21FE/ENLFza', NULL, '2022-06-21 09:42:20', '2022-06-21 09:42:34', NULL, '0912123456', NULL, 'user', NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `google_id`, `phone_1`, `phone_2`, `role`, `address`, `city`) VALUES
+(13, 'Abi', 'yourweb200@gmail.com', '2022-06-04 05:01:26', '$2y$10$rQ.BWW1rN5Hsu13oXzoCU.PA9.RwThTAqYk191d9XCMyBvrvBjp8u', NULL, '2022-06-04 05:00:06', '2022-06-30 03:21:53', NULL, '1234567890', NULL, 'admin', 'Lideta2', NULL),
+(15, 'yared', 'mekonnenabi@gmail.com', '2022-06-21 09:42:34', '$2y$10$wwlgwQ0CuN24QB5.dz5LN.nQH5Udwn9e5S/xbiu91f21FE/ENLFza', NULL, '2022-06-21 09:42:20', '2022-06-30 03:13:37', NULL, '0912123456', NULL, 'user', 'Gerji', NULL);
 
 --
 -- Indexes for dumped tables
@@ -274,6 +303,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cities`
+--
+ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -348,6 +383,12 @@ ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `cities`
+--
+ALTER TABLE `cities`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `conditions`
 --
 ALTER TABLE `conditions`
@@ -363,7 +404,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `pending_user_emails`
@@ -381,7 +422,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `product_typs`

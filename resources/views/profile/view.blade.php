@@ -21,13 +21,8 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus readonly>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus readonly>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
@@ -37,13 +32,8 @@
                             <label for="phone_1" class="col-md-4 col-form-label text-md-end">Phone Number 1</label>
 
                             <div class="col-md-6">
-                                <input id="phone_1" type="text" class="form-control @error('phone_1') is-invalid @enderror" name="phone_1" value="{{ $user->phone_1 }}" readonly>
+                                <input id="phone_1" type="text" class="form-control " name="phone_1" value="{{ $user->phone_1 }}" readonly>
 
-                                @error('phone_1')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
@@ -55,16 +45,19 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label for="address" class="col-md-4 col-form-label text-md-end">City</label>
+
+                            <div class="col-md-6">
+                                <input  id="city" class="form-control " name="city" value="{{ $user->city }}" readonly>
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label for="address" class="col-md-4 col-form-label text-md-end">Address</label>
 
                             <div class="col-md-6">
-                                <textarea id="address" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ $user->address }}" readonly>
-                                </textarea>
-                                @error('address')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input  id="address" class="form-control " name="address" value="{{ $user->address }}" readonly>
+
                             </div>
                         </div>
                         <div class="row mb-0">
