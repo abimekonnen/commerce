@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\City;
+
 use Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -70,9 +72,11 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $user_id = Auth::user()->id;
+        $cities = City::all();
         $users  = User::where('id',$user_id)->get();
         return view('profile.edit',[
             'users'=>$users,
+            'cities'=>$cities,
         ]);
     }
 
@@ -98,7 +102,8 @@ class ProfileController extends Controller
             //'email' => $request->email,
             'phone_1' => $request->phone_1,
             'phone_2' => $request->phone_2,
-            'address'=> $request->address
+            'address'=> $request->address,
+            'city'=> $request->city,
             ]
         );
         // if(auth()->user()->email != $request->email){

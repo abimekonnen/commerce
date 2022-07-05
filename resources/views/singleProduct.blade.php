@@ -41,7 +41,7 @@
             <div class="col-md-auto">
               <p class="text-left">{{ $user->phone_1 }} </p>
               <p class="text-left">{{ $user->phone_2 }} </p>
-              <p class="text-left">{{ $user->address }} </p>
+              <p class="text-left">{{ $user->city }} </p>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
       <h4 class="mb-7">Similar products</h4>
 
       <div class="row gap-y">
-        @foreach ($similaPproducts as $similaPproduct)
+        @foreach ($similarProducts as $similarProduct)
           <div class="col-md-6 col-xl-3">
             <div class="product-3">
               <a class="product-media" href="item.html">
@@ -66,8 +66,8 @@
               </a>
 
               <div class="product-detail">
-                <h6><a href="#">{{ $similaPproduct->name }}</a></h6>
-                <div class="product-price">{{ $similaPproduct->price }} Birr</div>
+                <h6><a href="#">{{ $similarProduct->name }}</a></h6>
+                <div class="product-price">{{ $similarProduct->price }} Birr</div>
               </div>
             </div>
           </div>

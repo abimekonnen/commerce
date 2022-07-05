@@ -8,6 +8,7 @@ use App\Models\product;
 use App\Models\User;
 use App\Models\category;
 use App\Models\productTyp;
+use App\Models\City;
 
 class WelcomeController extends Controller
 {
@@ -21,23 +22,29 @@ class WelcomeController extends Controller
         $products = Product::all();
         $types = ProductTyp::all();
         $categories = Category::all();
+        $cities = City::all();
         return view('welcome',[
             'products' => $products,
             'types' => $types,
             'categories' => $categories,
+            'cities' => $cities,
+        
         ]);
   
     }
     public function getType($qr)
     {
 
+    
         $products = Product::where('type','LIKE', "%{$qr}%")->get();
         $types = ProductTyp::all();
         $categories = Category::all();
+        $cities = City::all();
         return view('welcome',[
             'products' => $products,
             'types' => $types,
             'categories' => $categories,
+            'cities' => $cities,
         ]);
   
     }
@@ -58,13 +65,23 @@ class WelcomeController extends Controller
         $category = request()->input('category');
         $type = request()->input('type');
         $name = request()->input('name');
-        $products = Product::where('name','LIKE', "%{$name}%")->get();
+        $city = request()->input('city');
+        //dd($category);
+        $products = Product::where('category','LIKE',"%{$category}%")
+        ->where('type','LIKE',"%{$type}%")
+        ->where('name','LIKE',"%{$name}%")
+        ->where('city','LIKE',"%{$city}%")
+        // ->where('model','LIKE',"%{$name}%")
+        // ->where('description','LIKE',"%{$name}%")
+        ->get();
         $types = ProductTyp::all();
         $categories = Category::all();
+        $cities = City::all();
         return view('welcome',[
             'products' => $products,
             'types' => $types,
             'categories' => $categories,
+            'cities' => $cities,
         ]);
   
     }
@@ -72,14 +89,14 @@ class WelcomeController extends Controller
     public function checkOut($id)
     {
         $product = Product::where('id', $id)->first();
-        $similaPproducts = Product::where('type', 'LIKE', "%{$product->type}%" )->get();
+        $similarProducts = Product::where('type', 'LIKE', "%{$product->type}%" )->get();
         //dd($similaPproducts);
-        $user = User::select('phone_1','phone_2','address')->where('id', $product->user_id)->first();
+        $user = User::select('phone_1','phone_2','address','city')->where('id', $product->user_id)->first();
         $types = ProductTyp::all();
         $categories = Category::all();
         return view('singleProduct',[
             'product' => $product,
-            'similaPproducts' => $similaPproducts,
+            'similarProducts' => $similarProducts,
             'types' => $types,
             'categories' => $categories,
             'user' => $user,

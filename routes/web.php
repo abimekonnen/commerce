@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\dataFetchController;
 use App\Http\Controllers\WelcomeController ;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::get('checkout/{id}', [WelcomeController ::class, 'checkOut'])->name('chec
 Route::get('category/{qr}', [WelcomeController ::class, 'getCategory'])->name('getCategory');
 Route::get('type/{qr}', [WelcomeController ::class, 'getType'])->name('getTypes');
 Route::get('search/', [WelcomeController ::class, 'getSearch'])->name('getSearch');
+Route::post('comment/', [EmailController ::class, 'sendComment'])->name('comment');
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

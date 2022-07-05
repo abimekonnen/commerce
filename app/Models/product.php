@@ -20,6 +20,7 @@ class product extends Model
         'image_2',
         'image_3',
         'user_id',
+        'city',
 
     ];
 

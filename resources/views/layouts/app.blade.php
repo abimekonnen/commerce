@@ -104,8 +104,8 @@
               <h1 class="display-8 mb-7">Search products </h1>
               <div class="row mb-3">
 
-                <div class="col-md-4 mb-2">
-                    <select name="category"  type="submit" class="form-control  @error('category') is-invalid @enderror" 
+                <div class="col-md-3 mb-2">
+                    <select name="category"   class="form-control  @error('category') is-invalid @enderror" 
                     id="category"
                     >
                         <option disabled selected>Filter by Category</option>
@@ -121,11 +121,12 @@
                     @enderror
                 </div>
 
-                <div class="col-md-4 mb-2">
+                <div class="col-md-3 mb-2">
                     <select name="type"  type="submit" class="form-control  @error('category') is-invalid @enderror" 
                     id="type"
                     >
-                        <option disabled selected>Filter by  type</option>
+                        <option disabled selected>Filter by type</option>
+                        <option disabled >Select Category First</option>
 
                     </select>
 
@@ -135,16 +136,62 @@
                         </span>
                     @enderror
                 </div>
-                <div class="col-md-4 mb-2">
-                    <input type="text" name="name"   class="form-control  @error('category') is-invalid @enderror" 
-                    id="name" placeholder="Search here"
+                <div class="col-md-3 mb-2">
+                    <select name="city"   class="form-control  @error('city') is-invalid @enderror" 
+                    id="city"
                     >
+                        <option disabled selected>Filter by City</option>
+                        @foreach ($cities as $city)
+                            <option value="{{ $city->name }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+
+                    @error('city')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="col-md-3 mb-2">
+
+                  <input type="text" name="name"   class="form-control  @error('category') is-invalid @enderror" 
+                    id="name" placeholder="Search here">
+                   
+                    {{-- <button class="btn btn-outline-primary" type="button" id="button-addon1">Button</button>
+                    <input type="text" class="form-control" placeholder="" 
+                    aria-label="Example text with button addon" aria-describedby="button-addon1"> --}}
                     @error('category')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
+
+                {{-- <div class="col-md-1 mb-2">
+
+                    <button type="button" name="name"   class="btn btn-success" 
+                      id="name" placeholder="Search here">Search</button>
+                     
+                      <button class="btn btn-outline-primary" type="button" id="button-addon1">Button</button>
+                      <input type="text" class="form-control" placeholder="" 
+                      aria-label="Example text with button addon" aria-describedby="button-addon1">
+
+                </div --}}
+
+
+                {{-- <div class="col-md-3 mb-2"><span class="input-group-text">
+                    <svg class="icon">
+                    <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>
+                    </svg></span>
+                        <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('Email') }}" required
+                            autocomplete="email" autofocus value="{{ old('email') }}">
+                        @error('email')
+                        <span class="invalid-feedback">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                </div> --}}
+                
               </div>
             </form> 
             </div>
@@ -161,11 +208,58 @@
             @yield('content')
         </div>
     </div>
-    <footer class="footer" style="height: 15vmin;">
-        <div>
+    <footer class="footer mt-5" style="">
+        {{-- <div>
             <a href="{{ route('home') }}">Gebeya.com </a><a href="https://coreui.io"></a> &copy; 2022
         </div>
-        <div class="ms-auto">Developed by&nbsp;<a href="https://nisirweb.great-site.net/">Nisirweb</div>
+        <div class="ms-auto">Developed by&nbsp;<a href="https://nisirweb.great-site.net/">Nisirweb</div> --}}
+        <div class="container">
+            <form method="POST" action="{{ route('getSearch') }}" enctype="multipart/form-data" >
+                @csrf
+                <div class="row">
+                    <div class="col-md-3 mt-2">
+                        <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('Email') }}" required
+                            autocomplete="email" autofocus value="{{ old('email') }}">
+                        @error('email')
+                        <span class="invalid-feedback">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="col-md-3 mt-2 ">
+                        <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('Phone') }}" required
+                        autocomplete="email" autofocus value="{{ old('email') }}">
+                        @error('email')
+                        <span class="invalid-feedback">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-2 ">
+                        <textarea class="form-control @error('email') is-invalid @enderror" type="text" name="email" 
+                        placeholder="{{ __('Comment') }}" required autocomplete="email" autofocus value="{{ old('email') }}"></textarea>
+                        @error('email')
+                        <span class="invalid-feedback">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-2  offset-md-2 offset-sm-2">
+                        <button type="button" class="btn btn-primary">Primary</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="container">
+
+        </div>     
+            
     </footer>
 </div>
 <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>

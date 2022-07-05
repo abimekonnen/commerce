@@ -19,10 +19,12 @@
                 <thead>
                   <tr>
 
-      
-                    <th scope="col" style="width: 25%;" style="overflow-x:auto;">Name</th>
-                    <th scope="col" style="width: 35%;" style="overflow-x:auto;">Model</th>
-                    <th scope="col" style="width: 20%;" style="overflow-x:auto;">Price</th>
+                    <th scope="col" style="width: 5%;" style="overflow-x:auto;">No</th>
+                    <th scope="col" style="width: 20%;" style="overflow-x:auto;">Name</th>
+                    <th scope="col" style="width: 25%;" style="overflow-x:auto;">Model</th>
+                    <th scope="col" style="width: 10%;" style="overflow-x:auto;">Category</th>
+                    <th scope="col" style="width: 10%;" style="overflow-x:auto;">Type</th>
+                    <th scope="col" style="width: 10%;" style="overflow-x:auto;">Price</th>
                     <th scope="col" style="width: 10%;" style="overflow-x:auto;">View </th>
                     <th scope="col" style="width: 10%;" style="overflow-x:auto;">Delete</th>
 
@@ -35,9 +37,12 @@
                   <tbody >
                        @foreach ($products as $key=>$product)
                         <tr>
-                            <td style="width: 25%;"style="overflow-x:auto;">{{ $product->name  }}</td>
-                            <td style="width: 35%;"style="overflow-x:auto;"> {{ $product->model }}</td>
-                            <td style="width: 20%;" style="overflow-x:auto;">{{ $product->price  }}</td>
+                            <td style="width: 5%;"style="overflow-x:auto;">{{ 1+$key  }}</td>
+                            <td style="width: 20%;"style="overflow-x:auto;">{{ $product->name  }}</td>
+                            <td style="width: 25%;"style="overflow-x:auto;"> {{ $product->model }}</td>
+                            <td style="width: 10%;"style="overflow-x:auto;"> {{ $product->category }}</td>
+                            <td style="width: 10%;"style="overflow-x:auto;"> {{ $product->type }}</td>
+                            <td style="width: 10%;" style="overflow-x:auto;">{{ $product->price  }}</td>
                             <td style="width: 10%;" style="overflow-x:auto;">
                               <a  href="product/{{ $product->id }}/edit" class="btn btn-primary">
                                 {{ __('View') }}

@@ -5,7 +5,6 @@
         <div class="card mb-4 mx-4">
             
             <div class="card-body p-4">
-                <h1>Register</h1>
                 <h1 class="text-right" >Register</h1>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
@@ -24,16 +23,16 @@
                     </div>
 
                     <div class="input-group mb-3"><span class="input-group-text">
-                    <svg class="icon">
-                      <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>
-                    </svg></span>
-                        <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('Email') }}" required
-                               autocomplete="email" autofocus value="{{ old('email') }}">
-                        @error('email')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
+                        <svg class="icon">
+                        <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>
+                        </svg></span>
+                            <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('Email') }}" required
+                                autocomplete="email" autofocus value="{{ old('email') }}">
+                            @error('email')
+                            <span class="invalid-feedback">
+                                {{ $message }}
+                            </span>
+                            @enderror
                     </div>
 
                     <div class="input-group mb-3"><span class="input-group-text">
@@ -48,6 +47,22 @@
                             </span>
                             @enderror
                     </div>
+
+                    {{-- <div class="input-group mb-3"><span class="input-group-text">
+                        <svg class="icon">
+                            <use xlink:href="{{ asset('icons/coreui.svg#cil-location-pin') }}"></use>
+                        </svg></span>
+                            <select class="form-control @error('phone') is-invalid @enderror"
+                             type="text" name="city" placeholder="{{ __('City') }}" >
+                                <option  selected>fgfd</option>      
+                                <option value="fdf">gfhgfh</option>
+                            </select>
+                            @error('phone')
+                            <span class="invalid-feedback">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                    </div> --}}
 
                     <div class="input-group mb-3"><span class="input-group-text">
                     <svg class="icon">

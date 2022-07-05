@@ -7,6 +7,7 @@ use App\Models\Condition;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductTyp;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use File;
@@ -79,6 +80,8 @@ class ProductController extends Controller
 
 
         $user_id = Auth::user()->id;
+        $city  = User::select('city')->where('id',$user_id)->limit(1)->get();
+        $city  = $city[0]->city;
         $request->validate([
             'name' =>'required',
             'model' =>'required',
@@ -94,8 +97,8 @@ class ProductController extends Controller
         $request->name = str_replace(' ', '', $request->name);
         if($request->picture_one){
             $image = $request->picture_one;
-            $newPictureOneName = '\1'.'-'.time().'-'. $request->name.'.'.$image->extension();
-            $destination1 = public_path('images').$newPictureOneName;
+            $newPictureOneName = '1'.'-'.time().'-'. $request->name.'.'.$image->extension();
+            $destination1 = public_path('images/').$newPictureOneName;
             $img = Image::make($image->getRealPath());
             $img->resize(500, 500, function ($constraint) {
                 $constraint->aspectRatio();
@@ -106,8 +109,8 @@ class ProductController extends Controller
         }
         if($request->picture_two){
             $image = $request->picture_two;
-            $newPictureTwoName = '\2'.'-'.time().'-'. $request->name.'.'.$image->extension();
-            $destination2 = public_path('images').$newPictureTwoName;
+            $newPictureTwoName = '2'.'-'.time().'-'. $request->name.'.'.$image->extension();
+            $destination2 = public_path('images/').$newPictureTwoName;
             $img = Image::make($image->getRealPath());
             $img->resize(500, 500, function ($constraint) {
                 $constraint->aspectRatio();
@@ -117,8 +120,8 @@ class ProductController extends Controller
         }
         if($request->picture_three){
             $image = $request->picture_three;
-            $newPictureThreeName = '\3'.'-'.time().'-'.$request->name.'.'.$image->extension();
-            $destination3 = public_path('images').$newPictureThreeName;
+            $newPictureThreeName = '3'.'-'.time().'-'.$request->name.'.'.$image->extension();
+            $destination3 = public_path('images/').$newPictureThreeName;
             $img = Image::make($image->getRealPath());
             $img->resize(500, 500, function ($constraint) {
                 $constraint->aspectRatio();
@@ -140,6 +143,7 @@ class ProductController extends Controller
                 'image_2' =>$newPictureTwoName,
                 'image_3' =>$newPictureThreeName,
                 'user_id' =>$user_id,
+                'city' => $city,
             ]
         );
 
@@ -207,41 +211,54 @@ class ProductController extends Controller
         //dd($id);
         if($request->picture_one){
             $image = $request->picture_one;
-            $newPictureOneName = '\1'.'-'.time().'-'. $nameImg.'.'.$image->extension();
-            $destination1 = public_path('images').$newPictureOneName;
+            $newPictureOneName = '1'.'-'.time().'-'. $nameImg.'.'.$image->extension();
+            $destination1 = public_path('images/').$newPictureOneName;
             $img = Image::make($image->getRealPath());
             $img->resize(500, 500, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($destination1);
 
+            $deletedImage = $productI  = Product::select('image_1')->where('id',$id)->get();
+
             DB::table('products')
             ->where('id', $id)
             ->update(['image_1' => $newPictureOneName]);
 
+            File::delete(public_path('images'.   $deletedImage[0]->image_1));
         }
         if($request->picture_two){
             $image = $request->picture_two;
-            $newPictureTwoName = '\2'.'-'.time().'-'.  $nameImg.'.'.$image->extension();
-            $destination2 = public_path('images').$newPictureTwoName;
+            $newPictureTwoName = '2'.'-'.time().'-'.  $nameImg.'.'.$image->extension();
+            $destination2 = public_path('images/').$newPictureTwoName;
             $img = Image::make($image->getRealPath());
             $img->resize(500, 500, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($destination2);
+
+            $deletedImage = $productI  = Product::select('image_1')->where('id',$id)->get();
+         
             DB::table('products')
             ->where('id', $id)
             ->update(['image_2' => $newPictureTwoName]);
+
+            File::delete(public_path('images'.   $deletedImage[0]->image_1));
         }
         if($request->picture_three){
             $image = $request->picture_three;
-            $newPictureThreeName = '\3'.'-'.time().'-'. $nameImg.'.'.$image->extension();
-            $destination3 = public_path('images').$newPictureThreeName;
+            $newPictureThreeName = '3'.'-'.time().'-'. $nameImg.'.'.$image->extension();
+            $destination3 = public_path('images/').$newPictureThreeName;
             $img = Image::make($image->getRealPath());
             $img->resize(500, 500, function ($constraint) {
                 $constraint->aspectRatio();
             })->save($destination3);
+
+            $deletedImage = $productI  = Product::select('image_1')->where('id',$id)->get();
+
             DB::table('products')
             ->where('id', $id)
             ->update(['image_3' => $newPictureThreeName]);
+
+            File::delete(public_path('images'.   $deletedImage[0]->image_1));
         }
         $products = Product::where('id',$id)->update(
             [
