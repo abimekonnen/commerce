@@ -44,10 +44,17 @@
             <ul class="header-nav ms-auto">
 
             </ul>
-            <ul class="header-nav ms-3">
+            <ul class="header-nav ms-1">
                 @auth
                 <li class="nav-item dropdown">
-                    
+                    <a class="nav-link py-0" href="{{ route('product.create') }}">
+                        {{ __('New Product') }}
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link py-0" href="{{ route('product.index') }}">
+                        {{ __('My Product') }}
+                    </a>
                 </li>
                 <li class="nav-item dropdown">
                    
@@ -152,20 +159,25 @@
                         </span>
                     @enderror
                 </div>
-                <div class="col-md-3 mb-2">
+                <div class="col-md-2 mb-2">
 
                   <input type="text" name="name"   class="form-control  @error('category') is-invalid @enderror" 
                     id="name" placeholder="Search here">
                    
-                    {{-- <button class="btn btn-outline-primary" type="button" id="button-addon1">Button</button>
-                    <input type="text" class="form-control" placeholder="" 
-                    aria-label="Example text with button addon" aria-describedby="button-addon1"> --}}
+
                     @error('category')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
+                <div class="col-md-1 mb-2">
+
+                      <button class="btn btn-primary"  type="submit" id="button-addon1">Search</button>
+  
+                      {{-- <input type="text" class="form-control" placeholder="" 
+                      aria-label="Example text with button addon" aria-describedby="button-addon1"> --}}
+                  </div>
 
                 {{-- <div class="col-md-1 mb-2">
 
@@ -214,11 +226,21 @@
         </div>
         <div class="ms-auto">Developed by&nbsp;<a href="https://nisirweb.great-site.net/">Nisirweb</div> --}}
         <div class="container">
-            <form method="POST" action="{{ route('getSearch') }}" enctype="multipart/form-data" >
+            <form method="POST" action="{{ route('comment') }}" enctype="multipart/form-data" >
                 @csrf
                 <div class="row">
-                    <div class="col-md-3 mt-2">
-                        <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('Email') }}" required
+                    <div class="col-md-6 mt-2">
+                        <input class="form-control @error('email') is-invalid @enderror" type="text" name="name" placeholder="{{ __('Name') }}" 
+                            autocomplete="name" autofocus value="{{ old('name') }}">
+                        @error('name')
+                        <span class="invalid-feedback">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="col-md-6 mt-2">Logo</div>
+                    <div class="col-md-6 mt-2">
+                        <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('Email') }}" 
                             autocomplete="email" autofocus value="{{ old('email') }}">
                         @error('email')
                         <span class="invalid-feedback">
@@ -226,31 +248,29 @@
                         </span>
                         @enderror
                     </div>
-                    <div class="col-md-3 mt-2 ">
-                        <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('Phone') }}" required
-                        autocomplete="email" autofocus value="{{ old('email') }}">
-                        @error('email')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-
-                </div>
-                <div class="row">
+                    <div class="col-md-6 mt-2">Phone</div>
                     <div class="col-md-6 mt-2 ">
-                        <textarea class="form-control @error('email') is-invalid @enderror" type="text" name="email" 
-                        placeholder="{{ __('Comment') }}" required autocomplete="email" autofocus value="{{ old('email') }}"></textarea>
-                        @error('email')
+                        <input class="form-control @error('phone') is-invalid @enderror" type="text" name="phone" placeholder="{{ __('Phone') }}" 
+                        autocomplete="phone" autofocus value="{{ old('email') }}">
+                        @error('phone')
                         <span class="invalid-feedback">
                             {{ $message }}
                         </span>
                         @enderror
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mt-2  offset-md-2 offset-sm-2">
-                        <button type="button" class="btn btn-primary">Primary</button>
+                    <div class="col-md-6 mt-2">Email</div>
+                    <div class="col-md-6 mt-2 ">
+                        <textarea  class="form-control @error('comment') is-invalid @enderror" type="text" name="comment" 
+                        placeholder="{{ __('Comment') }}" required autocomplete="comment" autofocus value="{{ old('comment') }}"></textarea>
+                        @error('comment')
+                        <span class="invalid-feedback">
+                            {{ $message }}
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="col-md-6 mt-2">Web</div>
+                    <div class="col-md-6 mt-2  offset-md-2 offset-sm-4">
+                        <button type="submit" class="btn btn-primary">Send</button>
                     </div>
                 </div>
             </form>

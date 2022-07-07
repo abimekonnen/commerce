@@ -64,20 +64,10 @@
             @endif
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('product.index') }}">
-                <svg class="nav-icon">
-                    <use xlink:href=""></use>
-                </svg>
-                {{ __('My Product') }}
-            </a>
+
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('product.create') }}">
-                <svg class="nav-icon">
-                    <use xlink:href=""></use>
-                </svg>
-                {{ __('Post New Product') }}
-            </a>
+
         </li>
         <li class="nav-item">
             @if (auth()->user()->isAdmin())

@@ -14,8 +14,9 @@
         </div>
 
         <div class="alert alert-info" role="alert"></div>
-        <div class="container">
-            <table class="table">
+        <div class="container overflow-auto">
+            <div class="">
+              <table class="table ">
                 <thead>
                   <tr>
 
@@ -30,9 +31,10 @@
 
                   </tr>
                 </thead>
-            </table>
+              </table>
+            </div>
             
-            <div class="overflow-auto "  style="margin-bottom: 2%">
+            <div class=""  style="margin-bottom: 2%">
                 <table class="table">
                   <tbody >
                        @foreach ($products as $key=>$product)

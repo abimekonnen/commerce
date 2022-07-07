@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\sendMail;
 class EmailController extends Controller
 {
     /**
@@ -11,9 +12,24 @@ class EmailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function sendComment()
+    public function sendComment(Request $request)
     {
-        //
+        //$request->phone;
+        $name = $request->name;
+        $phone = $request->phone;
+        $mail = $request->email;
+        $comment = $request->comment;
+        $request->validate([
+            'name' => 'sometimes|nullable|string|max:255',
+            'phone' => 'sometimes|nullable|numeric|digits:10' ,
+            'email' => 'sometimes|nullable|string|email|max:255',
+            'comment' => 'required|string|max:255',
+        ]);
+       // dd($comment);
+        Mail::to('nisirweb@hotmail.com')->send(new sendMail($name,$phone,$mail,$comment));
+        //dd("ok");
+        return redirect(route('welcome'));
+       
     }
 
     public function index()

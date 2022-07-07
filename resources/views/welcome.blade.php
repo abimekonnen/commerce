@@ -20,7 +20,8 @@
         <div class="col-md-6 col-xl-3">
           <div class="product-3 mb-2">
             <div class="product-media">
-              <span class="badge badge-pill badge-primary badge-pos-left">{{ $product->name }}</span>
+              <span class="badge badge-pill badge-success badge-pos-left">{{ $product->name }}</span>
+              <span class="badge badge-pill badge-primary badge-pos-right">{{ $product->city }}</span>
               <div class="slider-dots-fill-primary text-cente" data-provide="slider" data-dots="true">
                 <a href="/checkout/{{ $product->id }}">
                   <img src="{{url('images/'.$product->image_1)}}" alt="product">
@@ -38,7 +39,8 @@
       @endforeach
       <nav class="mt-7">
         <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
+          {{ $products->links() }}
+          {{-- <li class="page-item disabled">
             <a class="page-link" href="#">
               <span class="fa fa-angle-left"></span>
             </a>
@@ -52,9 +54,10 @@
             <a class="page-link" href="#">
               <span class="fa fa-angle-right"></span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>
+  
     @else
     <h1 class="text-center"> No Product found</h1>
         

@@ -10,6 +10,7 @@ use App\Models\category;
 use App\Models\productTyp;
 use App\Models\City;
 
+
 class WelcomeController extends Controller
 {
     /**
@@ -19,7 +20,7 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::simplePaginate(12);
         $types = ProductTyp::all();
         $categories = Category::all();
         $cities = City::all();
