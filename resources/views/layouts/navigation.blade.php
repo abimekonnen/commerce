@@ -1,7 +1,7 @@
 <ul class="sidebar-nav" data-coreui="navigation" data-simplebar>
 
-    @if (Route::currentRouteName() ==="home" || Route::currentRouteName() ==="welcome"   || Route::currentRouteName() ==="checkout"
-     || Route::currentRouteName() ==="getTypes" || Route::currentRouteName() ==="getCategory" || Route::currentRouteName() ==="getSearch")
+    {{-- @if (Route::currentRouteName() ==="home" || Route::currentRouteName() ==="welcome"   || Route::currentRouteName() ==="checkout"
+     || Route::currentRouteName() ==="getTypes" || Route::currentRouteName() ==="getCategory" || Route::currentRouteName() ==="getSearch") --}}
     <li class="nav-item">
 
             <a class="nav-link" href="/">
@@ -39,7 +39,7 @@
     
     </li>
     @endforeach  
-    @endif
+    {{-- @endif --}}
 
     @auth
         <li class="nav-item">

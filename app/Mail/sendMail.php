@@ -6,8 +6,11 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Jobs\CustomerJob;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 
-class sendMail extends Mailable
+
+class sendMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
     public $name;
