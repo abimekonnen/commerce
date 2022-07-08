@@ -4,6 +4,7 @@
 <link href="{{ asset('css/page.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{-- <link href="{{ asset('css/page.css') }}" rel="stylesheet"> --}}
 @endsection
 
 @section('content')
@@ -13,11 +14,34 @@
       <div class="row">
 
         <div class="col-md-6 ml-auto order-md-last mb-7 mb-md-0">
-          <div class="slider-dots-fill-primary text-center" data-provide="slider" data-dots="true">
-            <div><img src="{{url('images/'.$product->image_1)}}"></div>
-            {{-- <div><img src="{{url('images/'.$product->image_2)}}"></div>
-            <div><img src="{{url('images/'.$product->image_3)}}"></div> --}}
+
+          <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" >
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="10000" >
+                <img src="{{url('images/'.$product->image_1)}}" class="d-block w-100" alt="..." style="width: 400px;">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="{{url('images/'.$product->image_2)}}" class="d-block w-100" alt="..." style="width: 400px;">
+              </div>
+              <div class="carousel-item">
+              <img src="{{url('images/'.$product->image_3)}}" class="d-block w-100" alt="..." style="width: 400px;">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
+
+          {{-- <div class="slider-dots-fill-primary text-center" data-provide="slider" data-dots="true">
+            <div><img src="{{url('images/'.$product->image_1)}}" style="width: 400px;"></div>
+            <div><img src="{{url('images/'.$product->image_2)}}" style="width: 400px;"></div>
+            <div><img src="{{url('images/'.$product->image_3)}}" style="width: 400px;"></div>
+          </div> --}}
         </div>
 
         <div class="col-11 mx-auto col-md-5 mx-md-0">
@@ -50,6 +74,7 @@
 
 
     </div>
+
   </section>
   <section class="section bg-gray bt-1">
     <div class="container">
@@ -62,7 +87,7 @@
             <div class="product-3">
               <a class="product-media" href="item.html">
                 <span class="badge badge-pill badge-primary badge-pos-left">New</span>
-                <img src="../assets/img/shop/10.jpg" alt="product">
+                <img src="" alt="product">
               </a>
 
               <div class="product-detail">

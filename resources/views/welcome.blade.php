@@ -3,7 +3,7 @@
 
 <link href="{{ asset('css/page.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-<link href="{{ asset('css/bpage.css') }}" rel="stylesheet">
+<link href="{{ asset('css/page.css') }}" rel="stylesheet">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 

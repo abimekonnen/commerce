@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2022 at 10:44 AM
+-- Generation Time: Jul 08, 2022 at 08:18 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -140,7 +140,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (23, '2022_06_14_072044_products_table', 16),
 (24, '2022_06_30_055212_create_city_table', 17),
 (25, '2022_06_30_055924_create_cities_table', 18),
-(26, '2022_06_30_060828_adding_city_colomun_for_user', 19);
+(26, '2022_06_30_060828_adding_city_colomun_for_user', 19),
+(27, '2022_07_05_061554_adding_address_colomon_for_products_table', 20);
 
 -- --------------------------------------------------------
 
@@ -218,28 +219,30 @@ CREATE TABLE `products` (
   `rate` double(8,2) DEFAULT NULL,
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `model`, `price`, `condition`, `category`, `type`, `description`, `discount_price`, `image_1`, `image_2`, `image_3`, `status`, `view`, `rate`, `user_id`, `created_at`, `updated_at`) VALUES
-(2, 'hp', 'hp 840', 25000.00, 'New', 'Electronics', 'Laptop', NULL, NULL, '1-1655191648-hp.jpg', '2-1655191648-hp.jpg', '3-1655191648-hp.jpg', 'active', NULL, NULL, 13, '2022-06-14 04:27:28', '2022-06-14 04:27:28'),
-(3, 'hp 2', 'hp 840 2', 25000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1655191760-hp 2.jpg', '2-1655191760-hp 2.jpg', '3-1655191760-hp 2.jpg', 'active', NULL, NULL, 13, '2022-06-14 04:29:20', '2022-06-14 04:29:20'),
-(4, 'hp 3', 'hp 840 3', 25000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1655191831-hp 3.jpg', '2-1655191831-hp 3.jpg', '3-1655191831-hp 3.jpg', 'active', NULL, NULL, 13, '2022-06-14 04:30:31', '2022-06-14 04:30:31'),
-(7, 'hp 10', 'hp 840 10', 25000.00, 'Used', 'Electronics', 'Laptop', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ', NULL, '1-1655728853-hp 10.jpg', '2-1655728853-hp 10.jpg', '3-1655728853-hp 10.jpg', 'active', NULL, NULL, 13, '2022-06-20 09:40:53', '2022-06-20 09:40:53'),
-(8, 'hp 12', 'hp 840 12', 15000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1655813979-hp 12.jpg', '2-1655813979-hp 12.jpg', '3-1655813979-hp 12.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:19:39', '2022-06-21 09:19:39'),
-(9, 'tablet 1', 'tab 1', 20000.00, 'New', 'Electronics', 'Tablet', NULL, NULL, '1-1655814018-tablet 1.jpg', '2-1655814018-tablet 1.jpg', '3-1655814018-tablet 1.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:20:18', '2022-06-21 09:20:18'),
-(10, 'Tablet 3', 'tab 2', 10000.00, 'Used', 'Electronics', 'Tablet', NULL, NULL, '1-1655814054-Tablet 3.jpg', '2-1655814054-Tablet 3.jpg', '3-1655814054-Tablet 3.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:20:54', '2022-06-21 09:20:54'),
-(11, 'hp 13', 'hp 840 13', 20000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1655814092-hp 13.jpg', '2-1655814092-hp 13.jpg', '3-1655814092-hp 13.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:21:32', '2022-06-21 09:21:32'),
-(15, 'dell 2', 'dell latituse', 25000.00, 'New', 'Electronics', 'Laptop', NULL, NULL, '\\1-1656412487-dell2.jpg', '\\2-1656412488-dell2.jpg', '\\3-1656412488-dell2.jpg', 'active', NULL, NULL, 13, '2022-06-28 07:34:49', '2022-06-28 07:34:49'),
-(16, 'dell 3', 'dell latituse', 25000.00, 'Used', 'Electronics', 'Tablet', NULL, NULL, '\\1-1656412549-dell3.jpg', '\\2-1656412549-dell3.jpg', '\\3-1656412549-dell3.jpg', 'active', NULL, NULL, 13, '2022-06-28 07:35:49', '2022-06-28 07:35:49'),
-(18, 'dell 2', 'dell latituse 2', 15000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '\\1-1656488889-dell2.jpg', '\\2-1656488891-dell2.jpg', NULL, 'active', NULL, NULL, 15, '2022-06-29 04:48:11', '2022-06-29 05:25:58'),
-(19, 'dell 2', 'dell latituse', 15000.00, 'New', 'Electronics', 'Tablet', NULL, NULL, '\\1-1656499223-dell2.jpg', '\\2-1656567989-dell2.jpg', NULL, 'active', NULL, NULL, 15, '2022-06-29 07:40:25', '2022-06-30 02:46:30'),
-(20, 'dell 2', 'dell latituse', 15000.00, 'New', 'Electronics', 'Tablet', NULL, NULL, '\\1-1656499274-dell2.jpg', '\\2-1656499276-dell2.jpg', '\\3-1656499278-dell2.jpg', 'active', NULL, NULL, 15, '2022-06-29 07:41:18', '2022-06-29 07:41:18'),
-(21, 'dell2', 'dell latituse', 25000.00, 'New', 'Electronics', 'Tablet', NULL, NULL, '\\1-1656504299-dell2.jpg', '\\2-1656506031-dell2.jpg', '\\3-1656506031-dell2.jpg', 'active', NULL, NULL, 15, '2022-06-29 08:05:22', '2022-06-29 09:39:54');
+INSERT INTO `products` (`id`, `name`, `model`, `price`, `condition`, `category`, `type`, `description`, `discount_price`, `image_1`, `image_2`, `image_3`, `status`, `view`, `rate`, `user_id`, `created_at`, `updated_at`, `city`) VALUES
+(2, 'hp', 'hp 840', 25000.00, 'New', 'Electronics', 'Laptop', NULL, NULL, '1-1655191648-hp.jpg', '2-1655191648-hp.jpg', '3-1655191648-hp.jpg', 'active', NULL, NULL, 13, '2022-06-14 04:27:28', '2022-06-14 04:27:28', 'Adiss Abeba'),
+(3, 'hp 2', 'hp 840 2', 25000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1655191760-hp 2.jpg', '2-1655191760-hp 2.jpg', '3-1655191760-hp 2.jpg', 'active', NULL, NULL, 13, '2022-06-14 04:29:20', '2022-06-14 04:29:20', 'Adiss Abeba'),
+(4, 'hp 3', 'hp 840 3', 25000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1655191831-hp 3.jpg', '2-1655191831-hp 3.jpg', '3-1655191831-hp 3.jpg', 'active', NULL, NULL, 13, '2022-06-14 04:30:31', '2022-06-14 04:30:31', 'Adiss Abeba'),
+(7, 'hp 10', 'hp 840 10', 25000.00, 'Used', 'Electronics', 'Laptop', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ', NULL, '1-1655728853-hp 10.jpg', '2-1655728853-hp 10.jpg', '3-1655728853-hp 10.jpg', 'active', NULL, NULL, 13, '2022-06-20 09:40:53', '2022-06-20 09:40:53', 'Adiss Abeba'),
+(8, 'hp 12', 'hp 840 12', 15000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1655813979-hp 12.jpg', '2-1655813979-hp 12.jpg', '3-1655813979-hp 12.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:19:39', '2022-06-21 09:19:39', 'Adiss Abeba'),
+(9, 'tablet 1', 'tab 1', 20000.00, 'New', 'Electronics', 'Tablet', NULL, NULL, '1-1655814018-tablet 1.jpg', '2-1655814018-tablet 1.jpg', '3-1655814018-tablet 1.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:20:18', '2022-06-21 09:20:18', 'Adiss Abeba'),
+(10, 'Tablet 3', 'tab 2', 10000.00, 'Used', 'Electronics', 'Tablet', NULL, NULL, '1-1655814054-Tablet 3.jpg', '2-1655814054-Tablet 3.jpg', '3-1655814054-Tablet 3.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:20:54', '2022-06-21 09:20:54', 'Adiss Abeba'),
+(11, 'hp 13', 'hp 840 13', 20000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1655814092-hp 13.jpg', '2-1655814092-hp 13.jpg', '3-1655814092-hp 13.jpg', 'active', NULL, NULL, 13, '2022-06-21 09:21:32', '2022-06-21 09:21:32', 'Adiss Abeba'),
+(15, 'dell 2', 'dell latituse', 25000.00, 'New', 'Electronics', 'Laptop', NULL, NULL, '1-1656412487-dell2.jpg', '2-1656412488-dell2.jpg', '3-1656412488-dell2.jpg', 'active', NULL, NULL, 13, '2022-06-28 07:34:49', '2022-06-28 07:34:49', 'Adiss Abeba'),
+(16, 'dell 3', 'dell latituse', 25000.00, 'Used', 'Electronics', 'Tablet', NULL, NULL, '1-1656412549-dell3.jpg', '2-1656412549-dell3.jpg', '3-1656412549-dell3.jpg', 'active', NULL, NULL, 13, '2022-06-28 07:35:49', '2022-06-28 07:35:49', 'Adiss Abeba'),
+(18, 'dell 2', 'dell latituse 2', 15000.00, 'Used', 'Electronics', 'Laptop', NULL, NULL, '1-1656488889-dell2.jpg', '2-1656488891-dell2.jpg', NULL, 'active', NULL, NULL, 15, '2022-06-29 04:48:11', '2022-06-29 05:25:58', 'Adama'),
+(19, 'dell 2', 'dell latituse', 15000.00, 'New', 'Shoes', 'Jordan', NULL, NULL, '1-1657003097-dell2.jpg', '2-1656567989-dell2.jpg', '3-1656915080-dell2.jpg', 'active', NULL, NULL, 15, '2022-06-29 07:40:25', '2022-07-05 03:38:18', 'Adama'),
+(20, 'dell 2', 'dell latituse', 15000.00, 'New', 'Electronics', 'Tablet', NULL, NULL, '1-1656999109-dell2.jpg', '2-1656499276-dell2.jpg', '3-1656499278-dell2.jpg', 'active', NULL, NULL, 15, '2022-06-29 07:41:18', '2022-07-05 02:31:49', 'Adama'),
+(21, 'dell2', 'dell latituse', 25000.00, 'New', 'Electronics', 'Tablet', NULL, NULL, '1-1656999145-dell2.jpg', '2-1656506031-dell2.jpg', '3-1656506031-dell2.jpg', 'active', NULL, NULL, 15, '2022-06-29 08:05:22', '2022-07-05 02:32:25', 'Adama'),
+(22, 'hp', 'hp 840', 25000.00, 'New', 'Electronics', 'Laptop', NULL, NULL, '1-1656939355-hp.jpg', '2-1656939358-hp.jpg', '3-1656939358-hp.jpg', 'active', NULL, NULL, 15, '2022-07-04 09:55:59', '2022-07-04 09:55:59', 'Adama');
 
 -- --------------------------------------------------------
 
@@ -292,8 +295,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `google_id`, `phone_1`, `phone_2`, `role`, `address`, `city`) VALUES
-(13, 'Abi', 'yourweb200@gmail.com', '2022-06-04 05:01:26', '$2y$10$rQ.BWW1rN5Hsu13oXzoCU.PA9.RwThTAqYk191d9XCMyBvrvBjp8u', NULL, '2022-06-04 05:00:06', '2022-06-30 03:21:53', NULL, '1234567890', NULL, 'admin', 'Lideta2', NULL),
-(15, 'yared', 'mekonnenabi@gmail.com', '2022-06-21 09:42:34', '$2y$10$wwlgwQ0CuN24QB5.dz5LN.nQH5Udwn9e5S/xbiu91f21FE/ENLFza', NULL, '2022-06-21 09:42:20', '2022-06-30 03:13:37', NULL, '0912123456', NULL, 'user', 'Gerji', NULL);
+(13, 'Abi', 'yourweb200@gmail.com', '2022-06-04 05:01:26', '$2y$10$rQ.BWW1rN5Hsu13oXzoCU.PA9.RwThTAqYk191d9XCMyBvrvBjp8u', NULL, '2022-06-04 05:00:06', '2022-06-30 03:21:53', NULL, '1234567890', NULL, 'admin', 'Lideta2', 'Adiss Abeba '),
+(15, 'yared', 'mekonnenabi@gmail.com', '2022-06-21 09:42:34', '$2y$10$wwlgwQ0CuN24QB5.dz5LN.nQH5Udwn9e5S/xbiu91f21FE/ENLFza', NULL, '2022-06-21 09:42:20', '2022-07-04 03:02:50', NULL, '0912123456', NULL, 'user', 'Gerji', 'Adama');
 
 --
 -- Indexes for dumped tables
@@ -404,7 +407,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `pending_user_emails`
@@ -422,7 +425,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `product_typs`

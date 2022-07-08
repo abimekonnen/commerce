@@ -37,7 +37,7 @@ class WelcomeController extends Controller
     {
 
     
-        $products = Product::where('type','LIKE', "%{$qr}%")->get();
+        $products = Product::where('type','LIKE', "%{$qr}%")->simplePaginate(12);
         $types = ProductTyp::all();
         $categories = Category::all();
         $cities = City::all();
@@ -51,7 +51,7 @@ class WelcomeController extends Controller
     }
     public function getCategory($qr)
     {
-        $products = Product::where('category','LIKE', "%{$qr}%")->get();
+        $products = Product::where('category','LIKE', "%{$qr}%")->simplePaginate(12);
         $types = ProductTyp::all();
         $categories = Category::all();
         return view('welcome',[
@@ -74,7 +74,7 @@ class WelcomeController extends Controller
         ->where('city','LIKE',"%{$city}%")
         // ->where('model','LIKE',"%{$name}%")
         // ->where('description','LIKE',"%{$name}%")
-        ->get();
+        ->simplePaginate(12);
         $types = ProductTyp::all();
         $categories = Category::all();
         $cities = City::all();

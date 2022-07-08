@@ -231,7 +231,7 @@
                 <div class="row">
                     <div class="col-md-6 mt-2">
                         <input class="form-control @error('email') is-invalid @enderror" type="text" name="name" placeholder="{{ __('Name') }}" 
-                            autocomplete="name" autofocus value="{{ old('name') }}">
+                            required autocomplete="name" autofocus value="{{ old('name') }}">
                         @error('name')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -241,7 +241,7 @@
                     <div class="col-md-6 mt-2">Logo</div>
                     <div class="col-md-6 mt-2">
                         <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('Email') }}" 
-                            autocomplete="email" autofocus value="{{ old('email') }}">
+                        required autocomplete="email" autofocus value="{{ old('email') }}">
                         @error('email')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -251,7 +251,7 @@
                     <div class="col-md-6 mt-2">Phone</div>
                     <div class="col-md-6 mt-2 ">
                         <input class="form-control @error('phone') is-invalid @enderror" type="text" name="phone" placeholder="{{ __('Phone') }}" 
-                        autocomplete="phone" autofocus value="{{ old('email') }}">
+                        required autocomplete="phone" autofocus value="{{ old('email') }}">
                         @error('phone')
                         <span class="invalid-feedback">
                             {{ $message }}
@@ -270,7 +270,7 @@
                     </div>
                     <div class="col-md-6 mt-2">Web</div>
                     <div class="col-md-6 mt-2  offset-md-2 offset-sm-4">
-                        <button type="submit" class="btn btn-primary">Send</button>
+                        {{-- <button type="submit" class="btn btn-primary">Send</button> --}}
                     </div>
                 </div>
             </form>
