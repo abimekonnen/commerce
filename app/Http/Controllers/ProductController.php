@@ -144,6 +144,7 @@ class ProductController extends Controller
                 'image_3' =>$newPictureThreeName,
                 'user_id' =>$user_id,
                 'city' => $city,
+                'description'=> $request->description,
             ]
         );
 

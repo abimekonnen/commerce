@@ -47,11 +47,11 @@
        
 
           <ul class="list-unstyled">
-            <li>{{ $product->name }}</li>
-            <li>{{ $product->model  }} </li>
+            <li class="lead-5 mb-0 lh-1 fw-500 text-primary mt-1">{{ $product->name }}</li>
+            <li class="lead-5 mb-0 lh-1 fw-500 text-primary mt-5">{{ $product->model  }} </li>
           </ul>
 
-          <p >
+          <p class="mt-5">
             {{ $product->description }}
           </p>
 
@@ -61,10 +61,10 @@
             </div>
 
             <div class="col-md-auto">
-              <p class="text-left">{{ $user->phone_1 }} </p>
-              <p class="text-left">{{ $user->phone_2 }} </p>
-              <p class="text-left">{{ $user->city }} </p>
-              <p class="text-left">{{ $user->address }} </p>
+              <p class="text-left fw-500 text-primary">{{ $user->phone_1 }} </p>
+              <p class="text-left fw-500 text-primary">{{ $user->phone_2 }} </p>
+              <p class="text-left fw-500 text-primary">{{ $user->city }} </p>
+              <p class="text-left fw-500 text-primary">{{ $user->address }} </p>
             </div>
           </div>
         </div>

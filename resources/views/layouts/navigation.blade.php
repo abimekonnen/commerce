@@ -82,12 +82,12 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('about') }}">
+            {{-- <a class="nav-link" href="{{ route('about') }}">
                 <svg class="nav-icon">
                     <use xlink:href=""></use>
                 </svg>
                 {{ __('About us') }}
-            </a>
+            </a> --}}
         </li>
 
 

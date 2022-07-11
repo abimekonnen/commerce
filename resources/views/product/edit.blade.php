@@ -131,8 +131,10 @@
                         <label for="description" class="col-md-3 col-form-label text-md-end">Description</label>
 
                         <div class="col-md-8">
-                            <textarea input="x" id="description"" class="form-control @error('description') is-invalid @enderror" 
-                            name="description" value="{{ $product->description }}"></textarea>
+                            <textarea  id="description" class="form-control @error('description') is-invalid @enderror" rows="8" cols="50"
+                            name="description" value="">
+                            {{ $product->description }}
+                        </textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

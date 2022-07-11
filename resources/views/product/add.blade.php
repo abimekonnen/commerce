@@ -133,8 +133,10 @@
                             <label for="description" class="col-md-3 col-form-label text-md-end">Description</label>
 
                             <div class="col-md-8">
-                                <trix-editor input="x" id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}">
-                                </trix-editor>
+                                <textarea input="x" id="description" class="form-control @error('description') is-invalid @enderror" 
+                                name="description" value="{{ old('description') }} " rows="8" cols="50">
+
+                                </textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
