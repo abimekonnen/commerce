@@ -10,28 +10,26 @@
 @section('content')
 <section class="section">
     <div class="container">
-
       <div class="row">
 
         <div class="col-md-6 ml-auto order-md-last mb-7 mb-md-0">
-
-          <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" >
+          <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
-              <div class="carousel-item active" data-bs-interval="10000" >
-                <img src="{{url('images/'.$product->image_1)}}" class="d-block w-100" alt="..." style="width: 400px;">
-              </div>
-              <div class="carousel-item" data-bs-interval="2000">
-                <img src="{{url('images/'.$product->image_2)}}" class="d-block w-100" alt="..." style="width: 400px;">
+              <div class="carousel-item active">
+                <img src="{{url('images/'.$product->image_1)}}" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-              <img src="{{url('images/'.$product->image_3)}}" class="d-block w-100" alt="..." style="width: 400px;">
+                <img src="{{url('images/'.$product->image_2)}}" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="{{url('images/'.$product->image_1)}}" class="d-block w-100" alt="...">
               </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
@@ -49,8 +47,8 @@
        
 
           <ul class="list-unstyled">
-            <li><span class="mr-1 ti-check text-success small-3"></span>{{ $product->name }}</li>
-            <li><span class="mr-1 ti-check text-success small-3"></span>{{ $product->model  }} </li>
+            <li>{{ $product->name }}</li>
+            <li>{{ $product->model  }} </li>
           </ul>
 
           <p >
@@ -66,13 +64,12 @@
               <p class="text-left">{{ $user->phone_1 }} </p>
               <p class="text-left">{{ $user->phone_2 }} </p>
               <p class="text-left">{{ $user->city }} </p>
+              <p class="text-left">{{ $user->address }} </p>
             </div>
           </div>
         </div>
 
       </div>
-
-
     </div>
 
   </section>
@@ -85,18 +82,23 @@
         @foreach ($similarProducts as $similarProduct)
           <div class="col-md-6 col-xl-3">
             <div class="product-3">
-              <a class="product-media" href="item.html">
-                <span class="badge badge-pill badge-primary badge-pos-left">New</span>
-                <img src="" alt="product">
+              <a class="product-media" href="{{ route('checkout',$similarProduct->id) }}">
+                <span class="badge badge-pill badge-success badge-pos-left">{{ $similarProduct->name }}</span>
+                <span class="badge badge-pill badge-primary badge-pos-right">{{ $similarProduct->city }}</span>
+                <img src="{{url('images/'.$similarProduct->image_1)}}" alt="product" style="width: 300px; height :200px">
               </a>
 
               <div class="product-detail">
-                <h6><a href="#">{{ $similarProduct->name }}</a></h6>
+                <h6><a href="{{ route('checkout', $similarProduct->id)  }}">{{ $similarProduct->name }}</a></h6>
                 <div class="product-price">{{ $similarProduct->price }} Birr</div>
               </div>
             </div>
+           
           </div>
         @endforeach
+        <div class="">
+          {{ $similarProducts ->links() }}
+        </div>
 
     </div>
   </section> 

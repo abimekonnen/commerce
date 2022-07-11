@@ -47,18 +47,18 @@
             <ul class="header-nav ms-1">
                 @auth
                 <li class="nav-item dropdown">
-                    <a class="nav-link py-0" href="{{ route('product.create') }}">
-                        {{ __('New Product') }}
+                    <a class="nav-link py-0 text-primary" href="{{ route('product.create') }}">
+                        {{ __('Sell Product') }}
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link py-0" href="{{ route('product.index') }}">
+                <li class="nav-item dropdown ">
+                    <a class="nav-link py-0 text-primary" href="{{ route('product.index') }}">
                         {{ __('My Product') }}
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                    
-                    <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link py-0 text-primary" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-end pt-0">
@@ -220,65 +220,59 @@
             @yield('content')
         </div>
     </div>
-    <footer class="footer mt-5" style="">
-        {{-- <div>
-            <a href="{{ route('home') }}">Gebeya.com </a><a href="https://coreui.io"></a> &copy; 2022
-        </div>
-        <div class="ms-auto">Developed by&nbsp;<a href="https://nisirweb.great-site.net/">Nisirweb</div> --}}
+    <footer class="footer mt-5" style="background-color:">
+
         <div class="container">
-            <form method="POST" action="{{ route('comment') }}" enctype="multipart/form-data" >
-                @csrf
-                <div class="row">
-                    <div class="col-md-6 mt-2">
-                        <input class="form-control @error('email') is-invalid @enderror" type="text" name="name" placeholder="{{ __('Name') }}" 
-                             autocomplete="name" autofocus value="{{ old('name') }}">
-                        @error('name')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col-md-6 mt-2">Logo</div>
-                    <div class="col-md-6 mt-2">
-                        <input class="form-control @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('Email') }}" 
-                        autocomplete="email" autofocus value="{{ old('email') }}">
-                        @error('email')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col-md-6 mt-2">Phone</div>
-                    <div class="col-md-6 mt-2 ">
-                        <input class="form-control @error('phone') is-invalid @enderror" type="text" name="phone" placeholder="{{ __('Phone') }}" 
-                       autocomplete="phone" autofocus value="{{ old('email') }}">
-                        @error('phone')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col-md-6 mt-2">Email</div>
-                    <div class="col-md-6 mt-2 ">
-                        <textarea  class="form-control @error('comment') is-invalid @enderror" type="text" name="comment" 
-                        placeholder="{{ __('Comment') }}" required autocomplete="comment" autofocus value="{{ old('comment') }}"></textarea>
-                        @error('comment')
-                        <span class="invalid-feedback">
-                            {{ $message }}
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col-md-6 mt-2">Web</div>
-                    <div class="col-md-6 mt-2  offset-md-2 offset-sm-4">
-                        <button type="submit" class="btn btn-primary">Send</button>
-                    </div>
+            <div class="row">
+                <div class="col-11 mx-auto col-md-5 mx-md-0">
+                    <form method="POST" action="{{ route('comment') }}" enctype="multipart/form-data" >
+                        @csrf
+
+                                <input class="form-control mt-3 @error('email') is-invalid @enderror" type="text" name="name" placeholder="{{ __('Name') }}" >
+                                @error('name')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+
+                                <input class="form-control  mt-3 @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('Email') }}" >
+                                @error('email')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+
+                                <input class="form-control  mt-3 @error('phone') is-invalid @enderror" type="text" name="phone" placeholder="{{ __('Phone') }}" >
+                                @error('phone')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+
+                                <textarea  class="form-control  mt-3 @error('comment') is-invalid @enderror" type="text" name="comment" 
+                                placeholder="{{ __('Comment') }}" required ></textarea>
+                                @error('comment')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+
+                                <button type="submit" class="btn btn-primary  mt-3 mb-5">Send</button>
+
+                    </form>
                 </div>
-            </form>
-        </div>
+                <div class="col-md-6 ml-auto order-md-last mb-7 mb-md-0">
+                   
+                    <label for="" class="col-md-6 col-form-label  mt-3">Phone</label>
+                    <label for="" class="col-md-6 col-form-label   mt-3">email</label>
+                    <label for="" class="col-md-6 col-form-label  mt-3">Amede Gebeya</label>
+                    <label for="" class="col-md-6 col-form-label   mt-3">Web</label>
+                </div>
+    
 
-        <div class="container">
-
-        </div>     
+        
+            </div>
+        </div>  
             
     </footer>
 </div>

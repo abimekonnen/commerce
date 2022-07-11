@@ -23,14 +23,14 @@
               <span class="badge badge-pill badge-success badge-pos-left">{{ $product->name }}</span>
               <span class="badge badge-pill badge-primary badge-pos-right">{{ $product->city }}</span>
               <div class="slider-dots-fill-primary text-cente" data-provide="slider" data-dots="true">
-                <a href="/checkout/{{ $product->id }}">
+                <a href="{{ route('checkout',$product->id) }}">
                   <img src="{{url('images/'.$product->image_1)}}" alt="product">
                 </a>
               </div>
             </div>
 
             <div class="product-detail">
-              <h6><a href="/checkout/{{ $product->id }}">{{ $product->model }}</a></h6>
+              <h6><a href="{{ route('checkout',$product->id) }}">{{ $product->model }}</a></h6>
               <div class="product-price">{{ $product->price }} Birr</div>
             </div>
           </div>

@@ -78,7 +78,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-
+       
         $user_id = Auth::user()->id;
         $city  = User::select('city')->where('id',$user_id)->limit(1)->get();
         $city  = $city[0]->city;
@@ -173,12 +173,14 @@ class ProductController extends Controller
         $products  = Product::where('id',$id)->get();
         $productI  = Product::select('id')->where('id',$id)->limit(1)->get();
         $categories= Category::all();
+        $types= ProductTyp::all();
         $conditions= Condition::all();
         $productId = $productI[0]->id;
         // dd($productId[0]->id);
         return view('product.edit',[
             'products'=>$products,
             'categories'=>$categories,
+            'types'=>$types,
             'conditions'=>$conditions,
             'productId'=>$productId,
         ]);
@@ -194,7 +196,6 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $user = auth()->user();
-        //dd($user);
         $request->validate([
             'name' =>'required',
             'model' =>'required',

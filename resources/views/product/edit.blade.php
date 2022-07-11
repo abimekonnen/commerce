@@ -40,7 +40,7 @@
                     <div class="row mb-3">
                         <label for="model" class="col-md-3 col-form-label text-md-end">Model</label>
 
-                        <div class="col-md-7">
+                        <div class="col-md-8">
                             <input id="model" type="text" class="form-control @error('model') is-invalid @enderror" name="model" value="{{ $product->model }}">
 
                             @error('model')
@@ -131,8 +131,8 @@
                         <label for="description" class="col-md-3 col-form-label text-md-end">Description</label>
 
                         <div class="col-md-8">
-                            <trix-editor input="x" id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ $product->description }}">
-                            </trix-editor>
+                            <textarea input="x" id="description"" class="form-control @error('description') is-invalid @enderror" 
+                            name="description" value="{{ $product->description }}"></textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

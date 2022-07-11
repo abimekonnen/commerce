@@ -90,7 +90,11 @@ class WelcomeController extends Controller
     public function checkOut($id)
     {
         $product = Product::where('id', $id)->first();
-        $similarProducts = Product::where('type', 'LIKE', "%{$product->type}%" )->get();
+        $similarProducts = Product::where('type', 'LIKE', "%{$product->type}%" )
+        ->orwhere('category','LIKE',"%{$product->category}%")
+        ->orwhere('name','LIKE',"%{$product->name}%")
+        ->orwhere('model','LIKE',"%{$product->model}%")
+        ->simplePaginate(12);
         //dd($similaPproducts);
         $user = User::select('phone_1','phone_2','address','city')->where('id', $product->user_id)->first();
         $types = ProductTyp::all();
