@@ -5,6 +5,11 @@
         <div class="card mb-4 mx-4">
             <div class="card-body p-4">
                 <h1>{{ __('Reset Password') }}</h1>
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <form action="{{ route('password.email') }}" method="POST">
                     @csrf
 

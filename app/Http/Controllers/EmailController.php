@@ -32,5 +32,8 @@ class EmailController extends Controller
        
     }
 
+    // smtp.amedegebeya.com
+    // 465 (25 or 587 for non-SSL)
+
 
 }
