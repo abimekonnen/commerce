@@ -6,7 +6,6 @@
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 {{-- <link href="{{ asset('css/page.css') }}" rel="stylesheet"> --}}
 @endsection
-
 @section('content')
 <section class="section">
     <div class="container">
@@ -38,9 +37,15 @@
           <ul class="list-unstyled">
             <label class="lead-5 mb-0 lh-1 fw-500 text-primary ">{{ $product->name }}</label>
             <br>
+            <svg class="icon">
+              <use xlink:href="{{ asset('icons/coreui.svg#cil-location-pin') }}"></use>
+            </svg>
             <label class="text-left fw-500 mt-4">{{ $user->city }} , {{ $user->address }} </label>
-            <label class="text-left fw-500 ml-4">{{ $product->condition }} </label>
-            <label class="text-left fw-500 ml-4">{{ $product->view }} </label>
+            <label class="text-left fw-500 ml-4 ">{{ $product->condition }} </label>
+            <svg class="icon ml-2">
+              <use xlink:href="{{ asset('icons/coreui.svg#cil-eye') }}"></use>
+            </svg>
+            <label class="text-left fw-500 ml-2"> {{ $product->view }} </label>
             <h4  class="text-right text-primary fw-500 mr-6"> {{ $product->price }}  Birr</h4>
           </ul>
           <div class="container">

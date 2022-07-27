@@ -42,7 +42,6 @@
                                     <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
                                 </a>
                             </div> --}}
-
                             @if (Route::has('password.request'))
                                 <div class="col-6 text-end">
                                     <a href="{{ route('password.request') }}" class="btn btn-link px-0"

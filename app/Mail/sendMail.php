@@ -10,9 +10,9 @@ use App\Jobs\CustomerJob;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 
 
-class sendMail extends Mailable implements ShouldQueue
+class sendMail extends Mailable 
 {
-    use Queueable, SerializesModels;
+    use  SerializesModels;
     public $name;
     public $phone;
     public $email;

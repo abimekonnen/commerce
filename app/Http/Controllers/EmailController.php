@@ -8,11 +8,7 @@ use App\Mail\sendMail;
 use App\Jobs\CustomerJob; 
 class EmailController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function sendComment(Request $request)
     {
         //$request->phone;
@@ -26,14 +22,11 @@ class EmailController extends Controller
             'email' => 'sometimes|nullable|string|email|max:255',
             'comment' => 'required|string|max:255',
         ]);
-        //dispatch(new CustomerJob($name,$phone,$mail,$comment));
-        Mail::to('nisirweb@hotmail.com')->send(new sendMail($name,$phone,$mail,$comment));
+       // dispatch(new CustomerJob($name,$phone,$mail,$comment));
+        Mail::to('info@amedegebeya.com')->send(new sendMail($name,$phone,$mail,$comment));
         return redirect(route('welcome'));
        
     }
-
-    // smtp.amedegebeya.com
-    // 465 (25 or 587 for non-SSL)
 
 
 }

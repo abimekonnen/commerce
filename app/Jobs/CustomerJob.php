@@ -10,9 +10,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Mail\sendMail;
 
-class CustomerJob implements ShouldQueue
+class CustomerJob 
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable,  SerializesModels;
 
     /**
      * Create a new job instance.
@@ -39,7 +39,7 @@ class CustomerJob implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to('nisirweb@hotmail.com')->send(new sendMail('1','2','3','4'));
+        Mail::to('info@amedegebeya.com')->send(new sendMail('1','2','3','4'));
        
     }
 }

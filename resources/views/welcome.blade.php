@@ -1,16 +1,11 @@
 @extends('layouts.app')
 @section('css')
-
 <link href="{{ asset('css/page.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 <link href="{{ asset('css/page.css') }}" rel="stylesheet">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-
 @endsection
-
 @section('content')
-
 <section class="section bg-gray">
 <div class="container">
     <div class="row gap-y">
@@ -35,7 +30,6 @@
             </div>
           </div>
         </div> 
-    
       @endforeach
       <nav class="mt-7">
         <ul class="pagination justify-content-center">
@@ -57,13 +51,9 @@
           </li> --}}
         </ul>
       </nav>
-  
     @else
-    <h1 class="text-center"> No Product found</h1>
-        
+    <h1 class="text-center"> No Product found</h1>  
     @endif
-
-
   </div>
 </div>
 </section>  

@@ -98,12 +98,7 @@
                 {{ __('About us') }}
             </a> --}}
         </li>
-
-
         @else
-
     @endauth
-
-
 
 </ul>
