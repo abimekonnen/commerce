@@ -94,7 +94,7 @@
                             <select name="category"  type="submit" class="form-select  @error('category') is-invalid @enderror" 
                             id="category"
                             >
-                                <option disabled selected value="{{ $product->category }}">{{ $product->category }}</option>
+                                <option  selected value="{{ $product->category }}">{{ $product->category }}</option>
                                 @foreach ($categories as $category )
                             
                                     <option value="{{ $category->name  }}">{{ $category->name }}</option> 
@@ -145,7 +145,7 @@
                     <div class="row mt-3">
                         <label for="picture_one" class="col-md-3 col-form-label text-md-end">Picture one</label>
                         @if ($product->image_1 == null)
-                            <div  id="image_1" class="col-md-8">
+                            <div  id="image_1" class="col-md-8 mt-2">
                                 <input id="picture_one" type="file" class="form-control @error('picture_one') is-invalid @enderror" 
                                 name="picture_one" value="{{url('images/'.$product->image_1)}}" onchange="loadFile2(event,'picture_one_view','image_1','cacell_image_div_1')">
 
@@ -155,7 +155,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_1">
+                            <div class="col-md-1 mt-2" style="visibility: hidden" id="cacell_image_div_1">
                                 <a class="btn btn-outline-danger" id="imag_btn_1"
                                 onclick="cancellImage2('cacell_image_div_1','cancell_imag_btn_1','image_1','picture_one_view','picture_one')"
                                 >
@@ -164,7 +164,7 @@
                             </div>
 
                         @else
-                            <div  id="image_1" class="col-md-7">
+                            <div  id="image_1" class="col-md-7 mt-2">
                                 <input id="picture_one" type="file" class="form-control @error('picture_one') is-invalid @enderror" 
                                 name="picture_one" value="{{url('images/'.$product->image_1)}}" onchange="loadFile2(event,'picture_one_view','image_1','cacell_image_div_1')">
 
@@ -174,8 +174,8 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-1" style="visibility: visible" id="cacell_image_div_1">
-                                <a class="btn btn-outline-danger" id="imag_btn_1"
+                            <div class="col-md-1 mt-2" style="visibility: visible" id="cacell_image_div_1">
+                                <a class="btn btn-outline-danger " id="imag_btn_1"
                                 onclick="cancellImage2('cacell_image_div_1','cancell_imag_btn_1','image_1','picture_one_view','picture_one')"
                                 >
                                     Cancell
@@ -203,7 +203,7 @@
                     <div class="row mt-3">
                         <label for="picture_two" class="col-md-3 col-form-label text-md-end">Picture two</label>
                         @if ($product->image_2 == null)
-                            <div id="image_2" class="col-md-8">
+                            <div id="image_2" class="col-md-8 mt-2">
                                 <input id="picture_two" type="file" class="form-control @error('picture_two') is-invalid @enderror" 
                                 name="picture_two" value="{{url('images/'.$product->image_2)}}" onchange="loadFile2(event,'picture_two_view','image_2','cacell_image_div_2')">
 
@@ -213,7 +213,7 @@
                                     </span>
                                 @enderror
                             </div> 
-                            <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_2">
+                            <div class="col-md-1 mt-2" style="visibility: hidden" id="cacell_image_div_2">
                                 <a class="btn btn-outline-danger" id="imag_btn_2"
                                 onclick="cancellImage2('cacell_image_div_2','cancell_imag_btn_2','image_2','picture_two_view','picture_two')"
                                 >
@@ -221,7 +221,7 @@
                                 </a>
                             </div>
                         @else
-                            <div id="image_2" class="col-md-7">
+                            <div id="image_2" class="col-md-7 mt-2">
                                 <input id="picture_two" type="file" class="form-control @error('picture_two') is-invalid @enderror" 
                                 name="picture_two" value="{{url('images/'.$product->image_3)}}" onchange="loadFile2(event,'picture_two_view','image_2','cacell_image_div_2')">
 
@@ -231,7 +231,7 @@
                                     </span>
                                 @enderror
                             </div> 
-                            <div class="col-md-1" style="visibility: visible" id="cacell_image_div_2">
+                            <div class="col-md-1 mt-2" style="visibility: visible" id="cacell_image_div_2">
                                 <a class="btn btn-outline-danger" id="imag_btn_2"
                                 onclick="cancellImage2('cacell_image_div_2','cancell_imag_btn_2','image_2','picture_two_view','picture_two')"
                                 >
@@ -261,7 +261,7 @@
 
                         <label for="picture_three" class="col-md-3 col-form-label text-md-end">Picture three</label>
                         @if ($product->image_3 == null)
-                            <div id="image_3" class="col-md-8">
+                            <div id="image_3" class="col-md-8 mt-2">
                                 <input id="picture_three" type="file" class="form-control @error('picture_three') is-invalid @enderror"
                                 name="picture_three" value="{{url('images/'.$product->image_3)}}" onchange="loadFile2(event,'picture_three_view','image_3','cacell_image_div_3')" >
 
@@ -271,7 +271,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-1" style="visibility: hidden" id="cacell_image_div_3">
+                            <div class="col-md-1 mt-2" style="visibility: hidden" id="cacell_image_div_3">
                                 <a class="btn btn-outline-danger" id="cancell_imag_btn_3" 
                                 onclick="cancellImage2('cacell_image_div_3','cancell_imag_btn_3','image_3','picture_three_view','picture_three')">
                                     Cancell
@@ -279,7 +279,7 @@
                             </div>
 
                         @else
-                            <div id="image_3" class="col-md-7">
+                            <div id="image_3" class="col-md-7 mt-2">
                                 <input id="picture_three" type="file" class="form-control @error('picture_three') is-invalid @enderror"
                                 name="picture_three" value="{{url('images/'.$product->image_3)}}" onchange="loadFile2(event,'picture_three_view','image_3','cacell_image_div_3')" >
 
@@ -289,7 +289,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-md-1" style="visibility: visible" id="cacell_image_div_3">
+                            <div class="col-md-1 mt-2" style="visibility: visible" id="cacell_image_div_3">
                                 <a class="btn btn-outline-danger" id="cancell_imag_btn_3" 
                                 onclick="cancellImage2('cacell_image_div_3','cancell_imag_btn_3','image_3','picture_three_view','picture_three')">
                                     Cancell

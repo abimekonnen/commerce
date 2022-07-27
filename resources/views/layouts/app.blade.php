@@ -29,13 +29,13 @@
                 </svg>
             </button>
             @auth
-                <a class="header-brand d-md-none" href="/">Home</a>
+                <a class="header-brand d-md-none" href="{{ route('home') }}">Home</a>
                 @else
                 <a class="header-brand d-md-none text-primary" href="{{ route('product.create') }}">Sell product</a>
             @endauth
             <ul class="header-nav d-none d-md-flex">
                 @auth
-                  <li class="nav-item"><a class="nav-link " href="/">Home</a></li>
+                  <li class="nav-item"><a class="nav-link " href="{{ route('home') }}">Home</a></li>
                     @else
                     <li class="nav-item"><a class="nav-link text-primary" href="{{ route('product.create') }}">Sell product</a></li>
                 @endauth
@@ -220,7 +220,7 @@
             @yield('content')
         </div>
     </div>
-    <footer class="footer mt-5" style="background-color:">
+    <footer class="footer mt-5 " style="">
 
         <div class="container">
             <div class="row">

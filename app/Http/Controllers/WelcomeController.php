@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use \Illuminate\Pagination\Paginator;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\User;
@@ -67,7 +67,6 @@ class WelcomeController extends Controller
         $type = request()->input('type');
         $name = request()->input('name');
         $city = request()->input('city');
-        //dd($category);
         $products = Product::where('category','LIKE',"%{$category}%")
         ->where('type','LIKE',"%{$type}%")
         ->where('name','LIKE',"%{$name}%")
@@ -88,15 +87,17 @@ class WelcomeController extends Controller
     }
     
     public function checkOut($id)
-    {
+    {   
+        $viewData = Product::select('view')->where('id',$id)->first();
+        $view = $viewData->view + 1;
+        DB::table('products')->where('id',$id)->update(['view' => $view]);
         $product = Product::where('id', $id)->first();
         $similarProducts = Product::where('type', 'LIKE', "%{$product->type}%" )
         ->orwhere('category','LIKE',"%{$product->category}%")
         ->orwhere('name','LIKE',"%{$product->name}%")
         ->orwhere('model','LIKE',"%{$product->model}%")
         ->simplePaginate(12);
-        //dd($similaPproducts);
-        $user = User::select('phone_1','phone_2','address','city')->where('id', $product->user_id)->first();
+        $user = User::select('name','phone_1','phone_2','address','city')->where('id', $product->user_id)->first();
         $types = ProductTyp::all();
         $categories = Category::all();
         return view('singleProduct',[

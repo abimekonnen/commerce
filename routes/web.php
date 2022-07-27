@@ -47,7 +47,7 @@ Route::resource('product', ProductController::class)->middleware(['auth']);
 
 Route::get('fetchData/{categoryName}', [ProductController::class,'fetchData'])->name('fetchData');
 
-Route::get('getType/{categoryName}', [dataFetchController::class,'getType'])->middleware(['auth'])->name('getType');
+
 
 Route::resource('productTyp', ProductTypeController::class)->middleware(['auth']);
 

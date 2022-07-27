@@ -4,12 +4,21 @@
      || Route::currentRouteName() ==="getTypes" || Route::currentRouteName() ==="getCategory" || Route::currentRouteName() ==="getSearch") --}}
     <li class="nav-item">
 
-            <a class="nav-link" href="/">
-                <svg class="nav-icon">
-                    <use xlink:href=""></use>
-                </svg>
-                {{ __('All product') }}
-            </a>
+            @auth
+                <a class="nav-link" href="{{ route('home') }}">
+                    <svg class="nav-icon">
+                        <use xlink:href=""></use>
+                    </svg>
+                    {{ __('All product') }}
+                </a>
+            @else
+                <a class="nav-link" href="{{ route('welcome') }}">
+                    <svg class="nav-icon">
+                        <use xlink:href=""></use>
+                    </svg>
+                    {{ __('All product') }}
+                </a>
+            @endauth
     </li>
     @foreach ($categories as $category )
     <li class="nav-group" aria-expanded="false">

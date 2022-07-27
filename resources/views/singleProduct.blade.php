@@ -11,8 +11,7 @@
 <section class="section">
     <div class="container">
       <div class="row">
-
-        <div class="col-md-6 ml-auto order-md-last mb-7 mb-md-0">
+        <div class="col-md-6  col-sm-12 ml-auto order-md-last mb-7 mb-md-0">
           <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -34,50 +33,66 @@
               <span class="visually-hidden">Next</span>
             </button>
           </div>
-
-          {{-- <div class="slider-dots-fill-primary text-center" data-provide="slider" data-dots="true">
-            <div><img src="{{url('images/'.$product->image_1)}}" style="width: 400px;"></div>
-            <div><img src="{{url('images/'.$product->image_2)}}" style="width: 400px;"></div>
-            <div><img src="{{url('images/'.$product->image_3)}}" style="width: 400px;"></div>
-          </div> --}}
         </div>
-
-        <div class="col-11 mx-auto col-md-5 mx-md-0">
-
-       
-
+        <div class="col-md-6 col-sm-12 mx-md-0 ">
           <ul class="list-unstyled">
-            <li class="lead-5 mb-0 lh-1 fw-500 text-primary mt-1">{{ $product->name }}</li>
-            <li class="lead-5 mb-0 lh-1 fw-500 text-primary mt-5">{{ $product->model  }} </li>
+            <label class="lead-5 mb-0 lh-1 fw-500 text-primary ">{{ $product->name }}</label>
+            <br>
+            <label class="text-left fw-500 mt-4">{{ $user->city }} , {{ $user->address }} </label>
+            <label class="text-left fw-500 ml-4">{{ $product->condition }} </label>
+            <label class="text-left fw-500 ml-4">{{ $product->view }} </label>
+            <h4  class="text-right text-primary fw-500 mr-6"> {{ $product->price }}  Birr</h4>
           </ul>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3 col-sm-6">
+                <label  class="text-left fw-500 mt-2">Model</label>
+              </div>
+              <div class="col-md-9 col-sm-9">
+                <label  class="text-left text-primary fw-500 mt-2">{{ $product->model  }}</label>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <label  class="text-left fw-500 mt-2">Camera </label>
+              </div>
+              <div class="col-md-9 col-sm-6">
+                <label  class="text-left  text-primary fw-500 mt-2">Camera</label>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <label  class="text-left fw-500 mt-2">Storage</label>
+              </div>
+              <div class="col-md-9 col-sm-6">
+                <label  class="text-left text-primary fw-500 mt-2">Storage</label>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <label  class="text-left fw-500 mt-2">RAM</label>
+              </div>
+              <div class="col-md-9 col-sm-6">
+                <label  class="text-left text-primary fw-500 mt-2">RAM</label>
+              </div>
+            </div>
+          </div>
+
 
           <p class="mt-5">
             {{ $product->description }}
           </p>
-
-          <div class="row gap-y align-items-center text-center bg-light rounded p-5 mt-7">
-            <div class="col-md-auto ml-auto order-md-last">
-              <h4 class="lead-5 mb-0 lh-1 fw-500 text-primary">{{ $product->price }} Birr</h4>
-            </div>
-
+          <div class="row gap-y align-items-center text-center bg-light rounded p-5 mt-2">
             <div class="col-md-auto">
-              <p class="text-left fw-500 text-primary">{{ $user->phone_1 }} </p>
-              <p class="text-left fw-500 text-primary">{{ $user->phone_2 }} </p>
-              <p class="text-left fw-500 text-primary">{{ $user->city }} </p>
-              <p class="text-left fw-500 text-primary">{{ $user->address }} </p>
+              <p class="text-left fw-500 "> Seller</p>
+              <p class="text-left fw-500 text-primary"> {{ $user->name }} </p>
+              <p class="text-left fw-500 text-primary"> {{ $user->phone_1 }} </p>
+              <p class="text-left fw-500 text-primary"> {{ $user->phone_2 }} </p>
+             
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
   </section>
-  <section class="section bg-gray bt-1">
+  <section class="section bg-gray ">
     <div class="container">
-
-      <h4 class="mb-7">Similar products</h4>
-
+      <h4 class="mb-5">Similar products</h4>
       <div class="row gap-y">
         @foreach ($similarProducts as $similarProduct)
           <div class="col-md-6 col-xl-3">

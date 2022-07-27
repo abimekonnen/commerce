@@ -255,7 +255,7 @@ class ProductController extends Controller
             })->save($destination3);
 
             $deletedImage = $productI  = Product::select('image_1')->where('id',$id)->get();
-
+            
             DB::table('products')
             ->where('id', $id)
             ->update(['image_3' => $newPictureThreeName]);

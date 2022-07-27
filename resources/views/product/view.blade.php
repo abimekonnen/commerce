@@ -7,19 +7,18 @@
 @endsection
 
 @section('content')
-<div class="container" >
+<div class="container " style="height: 100%;  overflow: auto;">
     <div class="card ">
         <div class="card-header">
             {{ __('Products') }}
         </div>
-
         <div class="alert alert-info" role="alert"></div>
         <div class="container overflow-auto">
+          @if (!$products->isEmpty())
             <div class="">
               <table class="table ">
                 <thead>
                   <tr>
-
                     <th scope="col" style="width: 5%;" style="overflow-x:auto;">No</th>
                     <th scope="col" style="width: 20%;" style="overflow-x:auto;">Name</th>
                     <th scope="col" style="width: 25%;" style="overflow-x:auto;">Model</th>
@@ -28,16 +27,14 @@
                     <th scope="col" style="width: 10%;" style="overflow-x:auto;">Price</th>
                     <th scope="col" style="width: 10%;" style="overflow-x:auto;">View </th>
                     <th scope="col" style="width: 10%;" style="overflow-x:auto;">Delete</th>
-
                   </tr>
                 </thead>
               </table>
             </div>
-            
-            <div class=""  style="margin-bottom: 2%">
+              <div class=""  style="margin-bottom: 2%">
                 <table class="table">
                   <tbody >
-                       @foreach ($products as $key=>$product)
+                      @foreach ($products as $key=>$product)
                         <tr>
                             <td style="width: 5%;"style="overflow-x:auto;">{{ 1+$key  }}</td>
                             <td style="width: 20%;"style="overflow-x:auto;">{{ $product->name  }}</td>
@@ -60,8 +57,10 @@
                         @endforeach                                      
                   </tbody>
                 </table>
-                
-            </div>   
+            </div>
+            @else
+            <h1 class="text-center"> No Product found</h1>
+            @endif     
         </div>
 
     </div>
