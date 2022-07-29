@@ -20,46 +20,49 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        $products = Product::simplePaginate(12);
-        $types = ProductTyp::all();
-        $categories = Category::all();
-        $cities = City::all();
+        //$products = Product::simplePaginate(12);
+        //limit(3)
+        $count = product::all()->count();
+        $half = floor($count/2);
+        $products1 = Product::orderBy('created_at','DESC','view','DESC')->limit($count)->get();
+        $products2 = Product::orderBy('created_at','DESC')->limit($half)->get();
+        $products = $products1 . $products2 ;
+        //$test1 =  $products->toArray();
+        //$test = json_decode($products,true);
+        dd($products1);
+        $categories = Category::select('name')->get();
+        $types = ProductTyp::select('name','category')->get();
+        $cities = City::select('name')->get();
         return view('welcome',[
             'products' => $products,
             'types' => $types,
             'categories' => $categories,
             'cities' => $cities,
-        
         ]);
-  
     }
     public function getType($qr)
     {
-
-    
         $products = Product::where('type','LIKE', "%{$qr}%")->simplePaginate(12);
-        $types = ProductTyp::all();
-        $categories = Category::all();
-        $cities = City::all();
+        $categories = Category::select('name')->get();
+        $types = ProductTyp::select('name','category')->get();
+        $cities = City::select('name')->get();
         return view('welcome',[
             'products' => $products,
             'types' => $types,
             'categories' => $categories,
             'cities' => $cities,
         ]);
-  
     }
     public function getCategory($qr)
     {
         $products = Product::where('category','LIKE', "%{$qr}%")->simplePaginate(12);
-        $types = ProductTyp::all();
-        $categories = Category::all();
+        $categories = Category::select('name')->get();
+        $types = ProductTyp::select('name','category')->get();
         return view('welcome',[
             'products' => $products,
             'types' => $types,
             'categories' => $categories,
         ]);
-  
     }
     public function getSearch()
     {
@@ -74,18 +77,16 @@ class WelcomeController extends Controller
         // ->where('model','LIKE',"%{$name}%")
         // ->where('description','LIKE',"%{$name}%")
         ->simplePaginate(12);
-        $types = ProductTyp::all();
-        $categories = Category::all();
-        $cities = City::all();
+        $types = ProductTyp::select('name','category')->get();
+        $categories = Category::select('name')->get();
+        $cities = City::select('name')->get();
         return view('welcome',[
             'products' => $products,
             'types' => $types,
             'categories' => $categories,
             'cities' => $cities,
-        ]);
-  
-    }
-    
+        ]); 
+    } 
     public function checkOut($id)
     {   
         $viewData = Product::select('view')->where('id',$id)->first();
@@ -98,8 +99,8 @@ class WelcomeController extends Controller
         ->orwhere('model','LIKE',"%{$product->model}%")
         ->simplePaginate(12);
         $user = User::select('name','phone_1','phone_2','address','city')->where('id', $product->user_id)->first();
-        $types = ProductTyp::all();
-        $categories = Category::all();
+        $types = ProductTyp::select('name','category')->get();
+        $categories = Category::select('name')->get();
         return view('singleProduct',[
             'product' => $product,
             'similarProducts' => $similarProducts,

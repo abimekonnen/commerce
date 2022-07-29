@@ -16,7 +16,12 @@
           <div class="product-3 mb-2">
             <div class="product-media">
               <span class="badge badge-pill badge-success badge-pos-left">{{ $product->name }}</span>
-              <span class="badge badge-pill badge-primary badge-pos-right">{{ $product->city }}</span>
+              <span class="badge badge-pill badge-primary badge-pos-right">
+                <svg class="icon">
+                  <use xlink:href="{{ asset('icons/coreui.svg#cil-location-pin') }}"></use>
+                </svg>
+                {{ $product->city }}
+              </span>
               <div class="slider-dots-fill-primary text-cente" data-provide="slider" data-dots="true">
                 <a href="{{ route('checkout',$product->id) }}">
                   <img src="{{url('images/'.$product->image_1)}}" alt="product">
@@ -33,7 +38,7 @@
       @endforeach
       <nav class="mt-7">
         <ul class="pagination justify-content-center">
-          {{ $products->links() }}
+          {{-- {{ $products->links() }} --}}
           {{-- <li class="page-item disabled">
             <a class="page-link" href="#">
               <span class="fa fa-angle-left"></span>

@@ -23,7 +23,7 @@ class EmailController extends Controller
             'comment' => 'required|string|max:255',
         ]);
        // dispatch(new CustomerJob($name,$phone,$mail,$comment));
-        Mail::to('info@amedegebeya.com')->send(new sendMail($name,$phone,$mail,$comment));
+        Mail::to('customer@amedegebeya.com')->send(new sendMail($name,$phone,$mail,$comment));
         return redirect(route('welcome'));
        
     }
