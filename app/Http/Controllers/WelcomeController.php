@@ -24,7 +24,7 @@ class WelcomeController extends Controller
         //limit(3)
         $count = product::all()->count();
         $half = floor($count/2);
-        $products1 = Product::orderBy('created_at','DESC','view','DESC')->get();
+        $products1 = Product::orderBy('created_at','DESC','view','DESC')->simplePaginate(12);
         //$products2 = Product::orderBy('created_at','DESC')->limit($half)->get();
         $products = $products1 ;
         //$test1 =  $products->toArray();
@@ -42,7 +42,7 @@ class WelcomeController extends Controller
     }
     public function getType($qr)
     {
-        $products = Product::where('type','LIKE', "%{$qr}%")->simplePaginate(12);
+        $products = Product::where('type','LIKE', "%{$qr}%")->orderBy('created_at','DESC','view','DESC')->simplePaginate(12);
         $categories = Category::select('name')->get();
         $types = ProductTyp::select('name','category')->get();
         $cities = City::select('name')->get();
@@ -55,7 +55,7 @@ class WelcomeController extends Controller
     }
     public function getCategory($qr)
     {
-        $products = Product::where('category','LIKE', "%{$qr}%")->simplePaginate(12);
+        $products = Product::where('category','LIKE', "%{$qr}%")->orderBy('created_at','DESC','view','DESC')->simplePaginate(12);
         $categories = Category::select('name')->get();
         $types = ProductTyp::select('name','category')->get();
         return view('welcome',[
@@ -74,6 +74,7 @@ class WelcomeController extends Controller
         ->where('type','LIKE',"%{$type}%")
         ->where('name','LIKE',"%{$name}%")
         ->where('city','LIKE',"%{$city}%")
+        ->orderBy('created_at','DESC','view','DESC')
         // ->where('model','LIKE',"%{$name}%")
         // ->where('description','LIKE',"%{$name}%")
         ->simplePaginate(12);
