@@ -24,12 +24,12 @@ class WelcomeController extends Controller
         //limit(3)
         $count = product::all()->count();
         $half = floor($count/2);
-        $products1 = Product::orderBy('created_at','DESC','view','DESC')->limit($count)->get();
-        $products2 = Product::orderBy('created_at','DESC')->limit($half)->get();
-        $products = $products1 . $products2 ;
+        $products1 = Product::orderBy('created_at','DESC','view','DESC')->get();
+        //$products2 = Product::orderBy('created_at','DESC')->limit($half)->get();
+        $products = $products1 ;
         //$test1 =  $products->toArray();
         //$test = json_decode($products,true);
-        dd($products1);
+        //dd($products1);
         $categories = Category::select('name')->get();
         $types = ProductTyp::select('name','category')->get();
         $cities = City::select('name')->get();
