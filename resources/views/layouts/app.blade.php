@@ -39,10 +39,8 @@
                     @else
                     <li class="nav-item"><a class="nav-link text-primary" href="{{ route('product.create') }}">Sell product</a></li>
                 @endauth
-              
             </ul>
             <ul class="header-nav ms-auto">
-
             </ul>
             <ul class="header-nav ms-1">
                 @auth
@@ -57,7 +55,6 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                   
                     <a class="nav-link py-0 text-primary" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
                     </a>
@@ -103,10 +100,9 @@
     || Route::currentRouteName() ==="getTypes" || Route::currentRouteName() ==="getCategory" )
     <header class="header text-center text-white" style="background-color: #797d97;">
         <div class="container">
-  
         
             <div class="col-md-12 mx-auto">
-            <form method="GET" action="{{ route('getSearch') }}" enctype="multipart/form-data" >
+            <form method="GET" action="{{ route('getSearch') }}" enctype="multipart/form-data" id="productSearchForm">
               
               <h1 class="display-8 mb-7">Search products </h1>
               <div class="row mb-3">
@@ -127,16 +123,13 @@
                         </span>
                     @enderror
                 </div>
-
                 <div class="col-md-3 mb-2">
                     <select name="type"  type="submit" class="form-control  @error('category') is-invalid @enderror" 
                     id="type"
                     >
                         <option disabled selected>Filter by type</option>
                         <option disabled >Select Category First</option>
-
                     </select>
-
                     @error('category')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -161,8 +154,8 @@
                 </div>
                 <div class="col-md-2 mb-2">
 
-                  <input type="text" name="name"   class="form-control  @error('category') is-invalid @enderror" 
-                    id="name" placeholder="Search here">
+                  <input type="text" name="query"   class="form-control  @error('category') is-invalid @enderror" 
+                    id="query" placeholder="Search here">
                    
 
                     @error('category')
@@ -173,12 +166,8 @@
                 </div>
                 <div class="col-md-1 mb-2">
 
-                      <button class="btn btn-primary"  type="submit" id="button-addon1">Search</button>
-  
-                      {{-- <input type="text" class="form-control" placeholder="" 
-                      aria-label="Example text with button addon" aria-describedby="button-addon1"> --}}
-                  </div>
-
+                      <button class="btn btn-primary"  onclick="handleSearch()" type="submit" id="button-addon1">Search</button>
+                </div>
                 {{-- <div class="col-md-1 mb-2">
 
                     <button type="button" name="name"   class="btn btn-success" 
@@ -189,8 +178,6 @@
                       aria-label="Example text with button addon" aria-describedby="button-addon1">
 
                 </div --}}
-
-
                 {{-- <div class="col-md-3 mb-2"><span class="input-group-text">
                     <svg class="icon">
                     <use xlink:href="{{ asset('icons/coreui.svg#cil-envelope-open') }}"></use>
@@ -202,26 +189,19 @@
                             {{ $message }}
                         </span>
                         @enderror
-                </div> --}}
-                
+                </div> --}} 
               </div>
             </form> 
             </div>
-    
         </div>
     </header>
     @endif
-
-
-
-
     <div class="body flex-grow-1 px-1">
         <div class="container-lg">
             @yield('content')
         </div>
     </div>
     <footer class="footer mt-5 " style="">
-
         <div class="container">
             <div class="row">
                 <div class="col-11 mx-auto col-md-5 mx-md-0">
@@ -262,18 +242,13 @@
                     </form>
                 </div>
                 <div class="col-md-6 ml-auto order-md-last mb-7 mb-md-0">
-                   
                     <label for="" class="col-md-6 col-form-label  mt-3">Phone</label>
                     <label for="" class="col-md-6 col-form-label   mt-3">email</label>
                     <label for="" class="col-md-6 col-form-label  mt-3">Amede Gebeya</label>
                     <label for="" class="col-md-6 col-form-label   mt-3">Web</label>
                 </div>
-    
-
-        
             </div>
-        </div>  
-            
+        </div>        
     </footer>
 </div>
 <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
@@ -285,9 +260,33 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
 
-
 <script>
-    $(document).ready(function () {
+    //search by type
+   $('#query').on('keyup',function()
+   {
+    $value = $(this).val();
+    console.log($value);
+    if($value){
+        $('#defaultData').hide();
+        $('#Content').show();
+    }else{
+        $('#defaultData').show();
+        $('#Content').hide();
+    }
+    $.ajax({
+
+        type:'get',
+        url:'{{ URL::to('search2') }}',
+        data:{'search2':$value},
+        success:function(data){
+       
+            $('#Content').html(data);
+        }
+    });
+   }
+   )
+   //filter  product type
+   $(document).ready(function () {
     $('#category').on('change', function () {
     let categoryName = $(this).val();
     $('#type').empty();
@@ -304,9 +303,18 @@
         $('#type').append(`<option value="${element['name']}">${element['name']}</option>`);
         });
     }
-});
-});
-});
+    });
+    });
+    });
+    //search by button
+    function handleSearch(){
+        var form = document.getElementById('productSearchForm');
+        form.action = 'product/'+id;
+        console.log("me");
+
+
+    }  
 </script>
+
 </body>
 </html>
