@@ -88,17 +88,22 @@ class WelcomeController extends Controller
             'cities' => $cities,
         ]); 
     } 
-    public function getSearch2()
+    public function getSearch2(Request $request)
     {
         $output="";
-        $category = request()->input('category');
-        $type = request()->input('type');
-        $name = request()->input('query');
-        $city = request()->input('city');
-        $products = Product::
-        where('name','LIKE',"%{$name}%")
+        $category = $request->category1;
+        if($category == 'all') $category = "";
+        $type = $request->type1;
+        if($type == 'all') $type = "";
+        $name = $request->query1;
+        $city = $request->city1;
+        $products = Product::where('category','LIKE',"%{$category}%")
+        ->where('type','LIKE',"%{$type}%")
+        ->where('name','LIKE',"%{$name}%")
+        ->where('city','LIKE',"%{$city}%")
+        ->orderBy('created_at','DESC','view','DESC')
         ->get();
-        $products = $products->reverse();
+       // $products = $products->reverse();
         foreach($products as $product){
             $output.=
             '

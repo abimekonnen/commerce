@@ -61,7 +61,7 @@
                 </table>
             </div>
             @else
-            <h1 class="text-center"> No Product found</h1>
+            <h1 class="text-center">  No Product found</h1>
             @endif     
         </div>
 

@@ -23,16 +23,9 @@ class ProductController extends Controller
 
     public function fetchData($categoryName)
     {
-
-        $data = ProductTyp::where('category',$categoryName )->get();
-        echo json_encode($data);
-       
-    }
-    public function getType($categoryName)
-    {
-      
-        $data = ProductTyp::where('category',$categoryName )->get();
-        echo json_encode($data);
+            $data = ProductTyp::select('name')->where('category',$categoryName )->get();
+            echo json_encode($data);
+    
        
     }
 

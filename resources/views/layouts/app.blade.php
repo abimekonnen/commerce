@@ -102,7 +102,7 @@
         <div class="container">
         
             <div class="col-md-12 mx-auto">
-            <form method="GET" action="{{ route('getSearch') }}" enctype="multipart/form-data" id="productSearchForm">
+
               
               <h1 class="display-8 mb-7">Search products </h1>
               <div class="row mb-3">
@@ -112,6 +112,7 @@
                     id="category"
                     >
                         <option disabled selected>Filter by Category</option>
+                        <option value="all">All</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->name }}">{{ $category->name }}</option>
                         @endforeach
@@ -166,7 +167,7 @@
                 </div>
                 <div class="col-md-1 mb-2">
 
-                      <button class="btn btn-primary"  onclick="handleSearch()" type="submit" id="button-addon1">Search</button>
+                      <button class="btn btn-primary"   id="serchButton">Search</button>
                 </div>
                 {{-- <div class="col-md-1 mb-2">
 
@@ -191,7 +192,7 @@
                         @enderror
                 </div> --}} 
               </div>
-            </form> 
+
             </div>
         </div>
     </header>
@@ -264,9 +265,12 @@
     //search by type
    $('#query').on('keyup',function()
    {
-    $value = $(this).val();
-    console.log($value);
-    if($value){
+    $query = $(this).val();
+    var $category = $("#category").val();
+    var $type = $("#type").val();
+    var $city = $("#city").val();
+    console.log($query);
+    if($query){
         $('#defaultData').hide();
         $('#Content').show();
     }else{
@@ -274,46 +278,69 @@
         $('#Content').hide();
     }
     $.ajax({
-
         type:'get',
         url:'{{ URL::to('search2') }}',
-        data:{'search2':$value},
+        data:{'query1': $query ,'category1': $category,'type1': $type,'city1': $city},
         success:function(data){
-       
+            console.log(data);
             $('#Content').html(data);
         }
     });
    }
    )
+    //search by button
+    $('#serchButton').click(function()
+   {
+    var $query = $("#query").val();
+    var $category = $("#category").val();
+    var $type = $("#type").val();
+    var $city = $("#city").val();
+    console.log($query);
+    if($query){
+        $('#defaultData').hide();
+        $('#Content').show();
+    }else{
+        $('#defaultData').show();
+        $('#Content').hide();
+    }
+    $.ajax({
+        type:'get',
+        url:'{{ URL::to('search2') }}',
+        data:{'query1': $query ,'category1': $category,'type1': $type,'city1': $city},
+        success:function(data){
+            $('#Content').html(data);
+        }
+    });
+   }
+   ) 
    //filter  product type
    $(document).ready(function () {
     $('#category').on('change', function () {
     let categoryName = $(this).val();
-    $('#type').empty();
-    $('#type').append(`<option value="0" disabled selected>Processing...</option>`);
-    $.ajax({
-    type: 'GET',
-    url: 'http://127.0.0.1:8000/fetchData/' + categoryName,
-    success: function (response) {
-    var response = JSON.parse(response);
-    console.log(response);   
-    $('#type').empty();
-    $('#type').append(`<option value="0" disabled selected>Filter by type</option>`);
-    response.forEach(element => {
-        $('#type').append(`<option value="${element['name']}">${element['name']}</option>`);
+    if(categoryName == "all"){
+        $('#type').empty();
+        $('#type').append(`<option disabled selected>Select Category First</option>`);
+    }else{
+        $('#type').empty();
+        $('#type').append(`<option value="0" disabled selected>Processing...</option>`);
+        $.ajax({
+        type: 'GET',
+        url: 'http://127.0.0.1:8000/fetchData/' + categoryName,
+        success: function (response) {
+        var response = JSON.parse(response);
+        console.log(response);   
+        $('#type').empty();
+        $('#type').append(`<option value="0" disabled selected>Filter by type</option>`);
+        response.forEach(element => {
+            $('#type').append(`<option value="${element['name']}">${element['name']}</option>`);
+            });
+        }
         });
     }
-    });
-    });
-    });
-    //search by button
-    function handleSearch(){
-        var form = document.getElementById('productSearchForm');
-        form.action = 'product/'+id;
-        console.log("me");
 
-
-    }  
+    });
+    });
+ 
 </script>
 
 </body>
