@@ -22,9 +22,9 @@
                       </svg>
                         {{ $product->city }}
                         </span>
-                    <div class="slider-dots-fill-primary text-cente" data-provide="slider" data-dots="true">
+                    <div class="slider-dots-fill-primary text-cente" data-provide="slider" data-dots="true" >
                       <a href="{{ route('checkout',$product->id) }}">
-                        <img src="{{url('images/'.$product->image_1)}}" alt="amedegebeya">
+                        <img src="{{url('images/'.$product->image_1)}}" alt="amedegebeya" >
                       </a>
                     </div>
                   </div>

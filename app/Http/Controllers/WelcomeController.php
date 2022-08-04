@@ -73,6 +73,7 @@ class WelcomeController extends Controller
         $products = Product::where('category','LIKE',"%{$category}%")
         ->where('type','LIKE',"%{$type}%")
         ->where('name','LIKE',"%{$name}%")
+        ->where('model','LIKE',"%{$name}%")
         ->where('city','LIKE',"%{$city}%")
         ->orderBy('created_at','DESC','view','DESC')
         // ->where('model','LIKE',"%{$name}%")
@@ -91,19 +92,25 @@ class WelcomeController extends Controller
     public function getSearch2(Request $request)
     {
         $output="";
+        $products;
         $category = $request->category1;
-        if($category == 'all') $category = "";
         $type = $request->type1;
-        if($type == 'all') $type = "";
         $name = $request->query1;
         $city = $request->city1;
-        $products = Product::where('category','LIKE',"%{$category}%")
-        ->where('type','LIKE',"%{$type}%")
+        if($category == 'all') $category = "";
+        if($type == 'all') $type = "";
+        if($city == 'all') $city = "";
+        $products = Product::where('category', 'LIKE',"%{$category}%")
+        ->where('type', 'LIKE',"%{$type}%")
+        ->where('city', 'LIKE',"%{$city}%")
         ->where('name','LIKE',"%{$name}%")
-        ->where('city','LIKE',"%{$city}%")
+        // ->where('model','LIKE',"%{$name}%")
+        // ->where('category', 'LIKE',"%{$name}%")
+        // ->where('type','LIKE',"%{$name}%")
         ->orderBy('created_at','DESC','view','DESC')
         ->get();
        // $products = $products->reverse();
+       if(!$products->isEmpty()){
         foreach($products as $product){
             $output.=
             '
@@ -132,6 +139,11 @@ class WelcomeController extends Controller
             ';
             
         }
+       }else{
+        $output.=
+        '<h1 class="text-center"> No Product found</h1>';  
+       }
+
         return response($output);
 
     } 

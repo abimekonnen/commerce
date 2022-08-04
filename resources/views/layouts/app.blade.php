@@ -139,9 +139,10 @@
                 </div>
                 <div class="col-md-3 mb-2">
                     <select name="city"   class="form-control  @error('city') is-invalid @enderror" 
-                    id="city"
+                    id="city" 
                     >
                         <option disabled selected>Filter by City</option>
+                        <option value="all">All</option>
                         @foreach ($cities as $city)
                             <option value="{{ $city->name }}">{{ $city->name }}</option>
                         @endforeach
@@ -296,18 +297,14 @@
     var $type = $("#type").val();
     var $city = $("#city").val();
     console.log($query);
-    if($query){
-        $('#defaultData').hide();
-        $('#Content').show();
-    }else{
-        $('#defaultData').show();
-        $('#Content').hide();
-    }
+    $('#defaultData').hide();
+    $('#Content').show();
     $.ajax({
         type:'get',
         url:'{{ URL::to('search2') }}',
         data:{'query1': $query ,'category1': $category,'type1': $type,'city1': $city},
         success:function(data){
+            console.log(data);
             $('#Content').html(data);
         }
     });
@@ -331,6 +328,7 @@
         console.log(response);   
         $('#type').empty();
         $('#type').append(`<option value="0" disabled selected>Filter by type</option>`);
+        $('#type').append(`<option value="all"  >All</option>`);
         response.forEach(element => {
             $('#type').append(`<option value="${element['name']}">${element['name']}</option>`);
             });
