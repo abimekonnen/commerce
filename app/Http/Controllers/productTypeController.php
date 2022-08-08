@@ -42,7 +42,7 @@ class productTypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required','unique:product_typs', 'regex:/^[a-zA-Z]+$/u', 'max:255'],
+            'name' => ['required','unique:product_typs',  'max:255'],
             'category' => ['required', 
             function ($attribute, $value, $fail) {
                 if ($value === 'Select Category') {

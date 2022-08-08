@@ -22,9 +22,9 @@ class WelcomeController extends Controller
     {
         //$products = Product::simplePaginate(12);
         //limit(3)
-        $count = product::all()->count();
-        $half = floor($count/2);
-        $products1 = Product::orderBy('created_at','DESC','view','DESC')->simplePaginate(12);
+        //$count = product::all()->count();
+        //$half = floor($count/2);
+        $products1 = Product::select('id','name','city','price','model','image_1')->orderBy('created_at','DESC','view','DESC')->simplePaginate(12);
         //$products2 = Product::orderBy('created_at','DESC')->limit($half)->get();
         $products = $products1 ;
         //$test1 =  $products->toArray();
@@ -64,30 +64,29 @@ class WelcomeController extends Controller
             'categories' => $categories,
         ]);
     }
-    public function getSearch()
+    public function getSearch(Request $request)
     {
-        $category = request()->input('category');
-        $type = request()->input('type');
-        $name = request()->input('query');
-        $city = request()->input('city');
-        $products = Product::where('category','LIKE',"%{$category}%")
-        ->where('type','LIKE',"%{$type}%")
-        ->where('name','LIKE',"%{$name}%")
-        ->where('model','LIKE',"%{$name}%")
-        ->where('city','LIKE',"%{$city}%")
-        ->orderBy('created_at','DESC','view','DESC')
-        // ->where('model','LIKE',"%{$name}%")
-        // ->where('description','LIKE',"%{$name}%")
-        ->simplePaginate(12);
-        $types = ProductTyp::select('name','category')->get();
-        $categories = Category::select('name')->get();
-        $cities = City::select('name')->get();
-        return view('welcome',[
-            'products' => $products,
-            'types' => $types,
-            'categories' => $categories,
-            'cities' => $cities,
-        ]); 
+        $output="";
+        $products;
+        $name = $request->query1;
+        if($name){
+            $results = Product::where('name','LIKE',"%{$name}%")
+            ->orderBy('created_at','DESC','view','DESC')
+            ->get();
+                $output .=
+                '
+                    <ul class="dropdown-menu" style="display:block; position:relative">
+                ';
+            foreach($results as $result){
+                $output .='<li clss="searchRecomendations" ><a class="dropdown-item"  href="#" style="color: black;">'.$result->name.'</a></li>';
+            }
+            $output.=
+            '
+                </ul>
+            ';
+            echo $output;
+        }
+
     } 
     public function getSearch2(Request $request)
     {
@@ -153,7 +152,7 @@ class WelcomeController extends Controller
         $view = $viewData->view + 1;
         DB::table('products')->where('id',$id)->update(['view' => $view]);
         $product = Product::where('id', $id)->first();
-        $similarProducts = Product::where('type', 'LIKE', "%{$product->type}%" )
+        $similarProducts = Product::select('id','name','city','price','model','image_1')->where('type', 'LIKE', "%{$product->type}%" )
         ->orwhere('category','LIKE',"%{$product->category}%")
         ->orwhere('name','LIKE',"%{$product->name}%")
         ->orwhere('model','LIKE',"%{$product->model}%")

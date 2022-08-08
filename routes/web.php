@@ -19,6 +19,7 @@ Route::get('checkout/{id}', [WelcomeController ::class, 'checkOut'])->name('chec
 Route::get('category/{qr}', [WelcomeController ::class, 'getCategory'])->name('getCategory');
 Route::get('type/{qr}', [WelcomeController ::class, 'getType'])->name('getTypes');
 Route::get('search/', [WelcomeController ::class, 'getSearch'])->name('getSearch');
+Route::post('search/', [WelcomeController ::class, 'getSearch'])->name('getSearch');
 Route::get('search2/', [WelcomeController ::class, 'getSearch2'])->name('getSearch2');
 Route::post('comment', [EmailController ::class, 'sendComment'])->name('comment');
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);

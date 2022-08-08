@@ -35,10 +35,13 @@
                             @enderror
                     </div>
 
-                    <div class="input-group mb-3"><span class="input-group-text">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">
                         <svg class="icon">
-                            <use xlink:href="{{ asset('icons/coreui.svg#cil-mobile') }}"></use>
-                        </svg></span>
+                            <use xlink:href="{{ asset('icons/coreui.svg#cil-mobile') }}">
+                            </use>
+                        </svg>
+                        </span>
                             <input class="form-control @error('phone') is-invalid @enderror" type="text" name="phone" placeholder="{{ __('Phone number') }}" required
                                    autocomplete="phone" autofocus value="{{ old('phone') }}">
                             @error('phone')
